@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kişisel Portföy | Geleceğin Bilgisayar Mühendisi</title>
+    <title>Muhammed Sevinç | Kişisel Portföy</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
@@ -66,7 +66,7 @@
             color: var(--accent-color);
         }
 
-        /* Hero Section */
+        /* Hero Section (Profil Fotoğrafı Eklendi) */
         .hero {
             height: 100vh;
             display: flex;
@@ -75,6 +75,25 @@
             align-items: center;
             text-align: center;
             padding: 0 20px;
+            margin-top: 50px;
+        }
+        
+        /* Yuvarlak Profil Fotoğrafı Stili */
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-color);
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.5);
+            margin-bottom: 25px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
         }
 
         .hero h2 {
@@ -173,7 +192,9 @@
     </nav>
 
     <section class="hero" id="home">
-        <h2>Merhaba, Hoş Geldiniz!</h2>
+        <img src="profil.jpg" alt="Muhammed Sevinç" class="profile-img" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
+        
+        <h2>Merhaba, Ben Muhammed</h2>
         <div class="typing-container">
             <span id="typewriter"></span><span class="cursor">|</span>
         </div>
@@ -182,7 +203,7 @@
     <section id="hakkimda">
         <h3>Hakkımda</h3>
         <div class="about-content fade-in">
-            <p>Turizm sektöründeki geçmişimin getirdiği iletişim yeteneklerini, teknolojiye olan tutkumla birleştiriyorum. Yapay zeka, savunma sanayii ve nükleer enerji alanlarındaki gelişmeleri yakından takip eden, girişimcilik ekosisteminde (Girişimcilik360) aktif olarak yer alan biriyim. Hedefim, bir bilgisayar mühendisi olarak savunma sanayisinde ülkem için kritik ve yenilikçi teknolojiler geliştirmek.</p>
+            <p>Turizm sektörünün kazandırdığı güçlü iletişim becerilerini, teknolojiye olan derin tutkumla harmanlıyorum. Yapay zeka, savunma sanayii ve nükleer enerji alanlarındaki yenilikleri yakından takip eden, Girişimcilik360 ekosisteminde aktif bir teknoloji sevdalısıyım. En büyük hedefim; yetkin bir bilgisayar mühendisi olarak savunma sanayisinde ülkem için kritik, stratejik ve yenilikçi teknolojilerin mimarlarından biri olmak.</p>
         </div>
     </section>
 
@@ -190,24 +211,24 @@
         <h3>Deneyim & Gönüllülük</h3>
         <div class="grid-container">
             <div class="card fade-in">
-                <h4>TeknoAI-T</h4>
-                <p>Yapay zeka projeleri geliştiren TeknoAI-T takımında aktif görev alıyor ve yenilikçi çözümler üzerine çalışıyorum.</p>
+                <h4>TeknoAI-T Proje Ekibi</h4>
+                <p>Yapay zeka projeleri geliştiren TeknoAI-T takımının aktif bir üyesiyim. Burada teorik bilgileri pratiğe döküyor, ekip arkadaşlarımla yenilikçi AI çözümleri üzerine yoğun mesai harcıyorum.</p>
             </div>
             <div class="card fade-in">
                 <h4>Habitat Derneği & Vodafone</h4>
-                <p>"Yapay Zeka Yıldızları" projesi kapsamında eğitmen eğitimi programında yer alarak dijital okuryazarlık ve AI bilincini yaygınlaştırıyorum.</p>
+                <p>"Yapay Zeka Yıldızları" projesi kapsamında eğitmen eğitimi programında yer alıyorum. Amacım dijital okuryazarlığı artırmak ve yeni nesillere yapay zeka bilincini aşılamak.</p>
             </div>
             <div class="card fade-in">
                 <h4>T3 Vakfı & TEKNOFEST</h4>
-                <p>Milli Teknoloji Hamlesi vizyonu doğrultusunda T3 Vakfı'nda gönüllü çalışmalar yürütüyor ve TEKNOFEST ekosisteminde aktif rol alıyorum.</p>
+                <p>Milli Teknoloji Hamlesi vizyonunu içselleştirerek T3 Vakfı'nda gönüllü çalışmalar yürütüyor ve TEKNOFEST coşkusunun, ekosisteminin aktif bir parçası olmaktan gurur duyuyorum.</p>
             </div>
             <div class="card fade-in">
                 <h4>Yeşilay Atölye Çalışmaları</h4>
-                <p>İbni Sina Ortaokulu'nda Yeşilay işbirliği ile atölye çalışmaları (örneğin Şubat 2026'daki 2 derslik etkinlik) düzenleyerek gençlere rehberlik ediyorum.</p>
+                <p>İbni Sina Ortaokulu'nda Yeşilay işbirliği ile atölye çalışmaları tasarlıyorum. Şubat 2026'da gerçekleştireceğimiz 2 derslik eğitim programıyla genç kardeşlerime vizyon katmayı hedefliyorum.</p>
             </div>
             <div class="card fade-in">
-                <h4>Sivil Toplum Kuruluşları</h4>
-                <p>Kızılay, AFAD ve TEMA gibi sivil toplum kuruluşlarında aktif gönüllü olarak toplumsal fayda sağlamaya odaklanıyorum.</p>
+                <h4>Geniş Çaplı Sivil Toplum</h4>
+                <p>Sadece teknolojiyle değil, toplumla da iç içeyim. Kızılay, AFAD ve TEMA gibi sivil toplum kuruluşlarında aktif gönüllü olarak çalışıyor, çok yönlü gelişimime katkı sağlıyorum.</p>
             </div>
         </div>
     </section>
@@ -217,17 +238,17 @@
         <div class="grid-container">
             <div class="card fade-in">
                 <h4>Akademik Hedef (TYT/AYT)</h4>
-                <p>Bilgisayar Mühendisliği bölümünü kazanmak için yoğun bir şekilde üniversite sınavlarına hazırlanıyorum.</p>
+                <p>Bilgisayar Mühendisliği bölümünü kazanmak için TYT/AYT sınavlarına disiplinli bir şekilde, net hedefler doğrultusunda hazırlanıyorum.</p>
             </div>
             <div class="card fade-in">
-                <h4>Mentorluk & Organizasyon</h4>
-                <p>Mentorluk programlarında yer almak için başvurularımı yapıyor, organizasyon rollerinde liderlik becerilerimi geliştiriyorum.</p>
+                <h4>Liderlik & Mentorluk</h4>
+                <p>Liderlik vasıflarımı güçlendirmek adına organizasyon rollerine başvuruyor, yeteneklerimi mentorluk programlarıyla bir üst seviyeye taşımak için adımlar atıyorum.</p>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Tüm Hakları Saklıdır. | Geleceğin Bilgisayar Mühendisi</p>
+        <p>&copy; 2026 Tüm Hakları Saklıdır. | Muhammed Sevinç - Geleceğin Bilgisayar Mühendisi</p>
     </footer>
 
     <script>
