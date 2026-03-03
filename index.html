@@ -1,570 +1,658 @@
-<!DOCTYPE html>  <html lang="tr">  
-<head>  
-    <meta charset="UTF-8">  
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6QQV9KYQ4C"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-6QQV9KYQ4C');
-    </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>Muhammed Sevinç | Kişisel Portföy</title>  
-    <style>  
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap');  :root {  
-        --bg-color: #121212;   
-        --text-color: #f3f4f6;   
-        --accent-color: #e30a17;   
-        --card-bg: #1e1e1e;   
-        --section-bg: #181818;   
-    }  
-
-    * {  
-        margin: 0;  
-        padding: 0;  
-        box-sizing: border-box;  
-        font-family: 'Poppins', sans-serif;  
-        scroll-behavior: smooth;  
-    }  
-
-    body {  
-        background-color: var(--bg-color);  
-        color: var(--text-color);  
-        line-height: 1.7;  
-        overflow-x: hidden;  
-    }  
-
-    /* Navbar */  
-    nav {  
-        position: fixed;  
-        top: 0;  
-        width: 100%;  
-        padding: 20px 50px;  
-        display: flex;  
-        justify-content: space-between;  
-        align-items: center;  
-        background: rgba(18, 18, 18, 0.95);  
-        backdrop-filter: blur(10px);  
-        z-index: 1000;  
-        border-bottom: 1px solid rgba(227, 10, 23, 0.2);  
-    }  
-
-    nav h1 { color: var(--accent-color); font-size: 1.5rem; font-weight: 800; letter-spacing: 1px; }  
-    nav ul { display: flex; list-style: none; gap: 20px; }  
-    nav ul li a { color: var(--text-color); text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: color 0.3s; }  
-    nav ul li a:hover { color: var(--accent-color); }  
-
-    /* Hero Section */  
-    .hero {  
-        min-height: 100vh; display: flex; flex-direction: column; justify-content: center;  
-        align-items: center; text-align: center; padding: 100px 20px 50px 20px;  
-        background: radial-gradient(circle at center, #2a0808 0%, var(--bg-color) 70%);  
-    }  
-      
-    .profile-img {  
-        width: 180px; height: 180px; border-radius: 50%; object-fit: cover;  
-        border: 4px solid var(--accent-color); box-shadow: 0 0 30px rgba(227, 10, 23, 0.5);   
-        margin-bottom: 25px; animation: float 4s ease-in-out infinite;  
-    }  
-
-    @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-12px); } 100% { transform: translateY(0px); } }  
-
-    .hero h2 { font-size: 3rem; margin-bottom: 10px; font-weight: 800; }  
-    .typing-container { font-size: 1.3rem; color: var(--accent-color); height: 35px; margin-bottom: 20px; font-weight: 300; }  
-
-    /* TERMINAL PANELİ */  
-    .terminal-status {  
-        background: #050505; border: 1px solid #333; border-top: 3px solid var(--accent-color);  
-        border-radius: 8px; text-align: left; margin-top: 15px; margin-bottom: 25px;  
-        width: 100%; max-width: 450px; font-family: 'Fira Code', monospace; box-shadow: 0 10px 20px rgba(0,0,0,0.8);  
-    }  
-    .terminal-header {  
-        background: #111; padding: 8px 15px; color: #888; font-size: 0.8rem;  
-        font-family: 'Fira Code', monospace; border-bottom: 1px solid #222; display: flex; justify-content: space-between;  
-    }  
-    .terminal-body { padding: 15px; color: #ddd; font-size: 0.9rem; font-family: 'Fira Code', monospace; }  
-    .terminal-body p { margin-bottom: 8px; }  
-    .terminal-body span.cmd { color: var(--accent-color); font-weight: bold; }  
-    .blink { animation: blinker 1s linear infinite; color: var(--accent-color); font-weight: bold;}  
-    @keyframes blinker { 50% { opacity: 0; } }  
-
-    .social-links { display: flex; gap: 15px; margin-top: 10px; }  
-    .social-btn {  
-        text-decoration: none; color: var(--text-color); border: 2px solid var(--accent-color);  
-        padding: 10px 25px; border-radius: 30px; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;  
-    }  
-    .social-btn:hover { background-color: var(--accent-color); color: #fff; box-shadow: 0 0 20px rgba(227, 10, 23, 0.6); transform: translateY(-3px); }  
-
-    /* Sections General */  
-    section { padding: 100px 20px; }  
-    .container { max-width: 1100px; margin: 0 auto; }  
-    .alt-bg { background-color: var(--section-bg); }  
-
-    section h3 { font-size: 2.5rem; margin-bottom: 50px; text-align: center; color: var(--text-color); text-transform: uppercase; letter-spacing: 2px; }  
-    section h3 span { color: var(--accent-color); }  
-
-    /* Ortak Animasyon Sınıfları */  
-    .about-text, .card, .timeline-item, .stat-box, .gallery-img, .radar-box, .skill-bars-container, .project-card, .ngo-grid {  
-        opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out;  
-    }  
-    .visible {  
-        opacity: 1 !important; transform: translateY(0) !important;  
-    }  
-
-    .about-text { background: var(--card-bg); padding: 40px; border-radius: 15px; border-top: 4px solid var(--accent-color); box-shadow: 0 10px 30px rgba(0,0,0,0.8); font-size: 1.05rem; }  
-    .about-text p { margin-bottom: 15px; }  
-
-    .skills-container { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 30px; }  
-    .skill-tag { background: rgba(227, 10, 23, 0.1); color: var(--accent-color); border: 1px solid var(--accent-color); padding: 10px 20px; border-radius: 20px; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease; }  
-    .skill-tag:hover { background: var(--accent-color); color: #fff; transform: scale(1.05); }  
-
-    /* SAYILARLA BEN (SAYAÇLAR) */  
-    .stats-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }  
-    .stat-box {   
-        background: var(--card-bg); padding: 30px; border-radius: 15px; width: 220px;  
-        text-align: center; border-bottom: 4px solid var(--accent-color); box-shadow: 0 10px 20px rgba(0,0,0,0.5);  
-    }  
-    .stat-number { font-size: 3rem; font-weight: 800; color: var(--accent-color); margin-bottom: 10px; font-family: 'Fira Code', monospace; }  
-    .stat-text { font-size: 1rem; font-weight: 600; color: #ddd; }  
-
-    /* Timeline (Harita) */  
-    .timeline { position: relative; max-width: 900px; margin: 0 auto; }  
-    .timeline::after { content: ''; position: absolute; width: 4px; background-color: var(--accent-color); top: 0; bottom: 0; left: 50%; margin-left: -2px; box-shadow: 0 0 15px rgba(227, 10, 23, 0.6); }  
-    .timeline-item { padding: 10px 40px; position: relative; width: 50%; }  
-    .timeline-item:nth-child(odd) { left: 0; }  
-    .timeline-item:nth-child(even) { left: 50%; }  
-    .timeline-item::after { content: ''; position: absolute; width: 22px; height: 22px; right: -11px; background-color: var(--bg-color); border: 4px solid var(--accent-color); top: 25px; border-radius: 50%; z-index: 1; transition: transform 0.3s; }  
-    .timeline-item:nth-child(even):after { left: -11px; }  
-    .timeline-item:hover::after { transform: scale(1.3); background-color: var(--accent-color); }  
-    .timeline-content { padding: 25px 30px; background: var(--card-bg); position: relative; border-radius: 15px; border-bottom: 3px solid var(--accent-color); transition: transform 0.3s; }  
-    .timeline-item:hover .timeline-content { transform: translateY(-5px) scale(1.02); }  
-    .timeline-date { display: inline-block; color: var(--accent-color); font-weight: 800; margin-bottom: 10px; font-size: 0.85rem; background: rgba(227, 10, 23, 0.1); padding: 5px 12px; border-radius: 5px; }  
-    .timeline-content h4 { color: #fff; margin-bottom: 10px; font-size: 1.2rem; }  
-    .timeline-content p { font-size: 0.95rem; color: #ccc; }  
-
-    /* Grid Cards (Projeler, STK, Sertifikalar) */  
-    .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }  
-    .card { background: var(--card-bg); padding: 30px; border-radius: 15px; border-left: 4px solid var(--accent-color); display: flex; flex-direction: column; transition: transform 0.3s; }  
-    .card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(227, 10, 23, 0.15); }  
-    .card h4 { font-size: 1.2rem; margin-bottom: 15px; color: #fff; }  
-    .card p { flex-grow: 1; font-size: 0.95rem; color: #ddd; }  
-    .date-badge { display: inline-block; background: var(--accent-color); color: #fff; font-size: 0.8rem; padding: 3px 10px; border-radius: 10px; margin-bottom: 15px; font-weight: 600; align-self: flex-start; }  
-    .cert-btn { display: inline-block; margin-top: 20px; padding: 8px 15px; border: 1px solid var(--accent-color); color: var(--accent-color); text-decoration: none; border-radius: 5px; font-size: 0.9rem; font-weight: 600; text-align: center; transition: 0.3s; align-self: flex-start; }  
-    .cert-btn:hover { background: var(--accent-color); color: #fff; box-shadow: 0 0 10px rgba(227, 10, 23, 0.5); }  
-    .cert-icon { font-size: 2.5rem; margin-bottom: 10px; }  
-
-    /* SAHADAN KARELER (GALERİ) */  
-    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }  
-    .gallery-img { width: 100%; height: 250px; object-fit: cover; border-radius: 10px; border: 2px solid #333; transition: all 0.4s ease; cursor: pointer; filter: grayscale(50%); }  
-    .gallery-img:hover { filter: grayscale(0%); transform: scale(1.05); border-color: var(--accent-color); box-shadow: 0 10px 20px rgba(227, 10, 23, 0.4); z-index: 2; position: relative; }  
-
-    /* KÜTÜPHANE VE PAZARTESİ BÜLTENİ */  
-    .radar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }  
-    .radar-box { background: var(--card-bg); padding: 30px; border-radius: 15px; border-top: 4px solid var(--accent-color); }  
-    .radar-box h4 { font-size: 1.4rem; color: #fff; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #333; padding-bottom: 10px; }  
-    .radar-list { list-style: none; }  
-    .radar-list li { margin-bottom: 15px; font-size: 0.95rem; color: #ddd; position: relative; padding-left: 20px; }  
-    .radar-list li::before { content: '>'; position: absolute; left: 0; color: var(--accent-color); font-weight: bold; font-family: 'Fira Code', monospace; }  
-    .bulletin-date { display: inline-block; background: var(--accent-color); padding: 3px 8px; border-radius: 5px; font-size: 0.8rem; font-weight: bold; margin-bottom: 15px; }  
-
-    /* HACKER İLETİŞİM FORMU */  
-    .contact-form { background: #050505; border: 1px solid #333; padding: 30px; border-radius: 10px; max-width: 600px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }  
-    .form-group { margin-bottom: 20px; display: flex; flex-direction: column; }  
-    .form-group label { color: var(--accent-color); font-family: 'Fira Code', monospace; margin-bottom: 8px; font-size: 0.9rem; }  
-    .form-group input, .form-group textarea { background: #111; border: 1px solid #333; color: #fff; padding: 12px; border-radius: 5px; font-family: 'Fira Code', monospace; transition: 0.3s; }  
-    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 0 10px rgba(227, 10, 23, 0.3); }  
-    .submit-btn { background: transparent; color: var(--accent-color); border: 2px solid var(--accent-color); padding: 12px 20px; font-family: 'Fira Code', monospace; font-weight: bold; font-size: 1rem; cursor: pointer; border-radius: 5px; transition: 0.3s; width: 100%; }  
-    .submit-btn:hover { background: var(--accent-color); color: #fff; }  
-
-    /* --- YENİ EKLENEN BÖLÜMLER İÇİN CSS --- */
-    
-    /* Yetenek Barları (Sistem Donanımı) */
-    .skill-bars-container { background: #050505; border: 1px solid #333; padding: 25px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
-    .skill-box { margin-bottom: 20px; }
-    .skill-label { display: flex; justify-content: space-between; font-family: 'Fira Code', monospace; font-size: 0.9rem; color: #aaa; margin-bottom: 8px; }
-    .skill-label span.glow { color: var(--accent-color); font-weight: bold; }
-    .skill-bar-bg { width: 100%; background: #111; border: 1px solid #222; border-radius: 4px; height: 12px; overflow: hidden; }
-    .skill-bar-fill { height: 100%; background: var(--accent-color); border-radius: 4px; box-shadow: 0 0 10px rgba(227, 10, 23, 0.5); position: relative; }
-    
-    /* STK ve Gönüllülük Ağı */
-    .ngo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; text-align: center; margin-top: 30px; }
-    .ngo-card { background: #111; border: 1px solid #333; padding: 20px 10px; border-radius: 10px; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    .ngo-card:hover { border-color: var(--accent-color); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(227, 10, 23, 0.2); }
-    .ngo-icon { font-size: 2rem; margin-bottom: 10px; }
-    .ngo-name { font-family: 'Fira Code', monospace; font-size: 0.85rem; color: #ddd; font-weight: bold; }
-
-    /* Proje Kartları Özel */
-    .project-card { border-top: 4px solid #444; border-left: none; }
-    .project-card:hover { border-top-color: var(--accent-color); }
-    .project-status { display: inline-block; padding: 3px 8px; font-size: 0.75rem; font-family: 'Fira Code', monospace; background: rgba(227, 10, 23, 0.15); color: var(--accent-color); border: 1px solid var(--accent-color); border-radius: 4px; margin-bottom: 10px; }
-
-    footer { text-align: center; padding: 40px; background: #080808; border-top: 1px solid #222; }  
-
-    @media screen and (max-width: 768px) {  
-        nav { padding: 15px 20px; }  
-        nav ul { display: none; }  
-        .hero h2 { font-size: 2.2rem; }  
-        section { padding: 70px 15px; }  
-        .timeline::after { left: 31px; }  
-        .timeline-item { width: 100%; padding-left: 70px; padding-right: 15px; }  
-        .timeline-item:nth-child(even) { left: 0%; }  
-        .timeline-item::after { left: 21px; }  
-        .timeline-item:nth-child(even):after { left: 21px; }  
-        .terminal-status { max-width: 90%; }  
-        .grid-container[style] { grid-template-columns: 1fr !important; }
-    }  
-    </style>
-</head>  
-<body>  <nav>  
-    <h1>Portföy.</h1>  
-    <ul>  
-        <li><a href="#hakkimda">Hakkımda</a></li>  
-        <li><a href="#donanim">Yetenekler</a></li>
-        <li><a href="#projeler">Projeler</a></li>
-        <li><a href="#yolculuk">Harita</a></li>  
-        <li><a href="#sertifikalar">Sertifikalar</a></li>  
-        <li><a href="#bulten">Okuma & Bülten</a></li>  
-        <li><a href="#iletisim">İletişim</a></li>  
-    </ul>  
-</nav>  
-
-<section class="hero" id="home">  
-    <img src="profil.jpg" alt="Muhammed Sevinç" class="profile-img" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">  
-    <h2>Merhaba, Ben Muhammed</h2>  
-    <div class="typing-container">  
-        <span id="typewriter"></span><span class="cursor">|</span>  
-    </div>  
-
-    <div class="terminal-status">  
-        <div class="terminal-header">  
-            <span>root@muhammed:~# system_status</span>  
-            <span>[ AKTİF ]</span>  
-        </div>  
-        <div class="terminal-body">  
-            <p><span class="cmd">> Konum_</span> Batman, Türkiye</p>  
-            <p><span class="cmd">> Ana Hedef_</span> Bilgisayar Müh. & Savunma Sanayii</p>  
-            <p><span class="cmd">> Güncel Odak_</span> TYT/AYT & TeknoAI-T Projeleri</p>  
-            <p><span class="cmd">> Sistem Modu_</span> <span class="blink">Sürekli Gelişim Gözlemleniyor...</span></p>  
-        </div>  
-    </div>  
-
-    <div class="social-links">  
-        <a href="BURAYA_LINKEDIN_LINKINI_YAPISTIR" target="_blank" class="social-btn">LinkedIn</a>  
-        <a href="BURAYA_GITHUB_LINKINI_YAPISTIR" target="_blank" class="social-btn">GitHub</a>  
-        <a href="BURAYA_INSTAGRAM_LINKINI_YAPISTIR" target="_blank" class="social-btn">Instagram</a>  
-    </div>  
-</section>  
-
-<section id="hakkimda" class="alt-bg">  
-    <div class="container">  
-        <h3>Ben <span>Kimim?</span></h3>  
-        <div class="about-grid">  
-            <div class="about-text fade-in">  
-                <p>Turizm sektöründe sahada çalışarak kazandığım insan ilişkileri, kriz yönetimi ve dinamik düşünme becerilerini; teknoloji dünyasının analitik ve mühendislik yapısıyla birleştiriyorum. Sadece kod yazan biri değil, aynı zamanda toplum için değer üreten, teknolojiyi bir amaç değil, ülkesini ileri taşıyacak bir araç olarak gören bir teknoloji sevdalısıyım.</p>  
-                <p>Özellikle <strong>Yapay Zeka</strong>, <strong>Savunma Sanayii</strong> ve <strong>Nükleer Enerji</strong> alanlarındaki küresel yenilikleri yakından takip ediyor, Girişimcilik360 ekosisteminde aktif olarak vizyonumu genişletiyorum. Milli Teknoloji Hamlesi ruhunu içselleştirmiş biri olarak en büyük hayalim; geleceğin donanımlı bir bilgisayar mühendisi olup, ülkemin otonom sistemlerine, havacılık teknolojilerine ve kritik savunma yazılımlarına imza atacak mimarlardan biri olmak.</p>  
-                  
-                <div class="skills-container">  
-                    <span class="skill-tag">🤖 Yapay Zeka (AI)</span>  
-                    <span class="skill-tag">🛡️ Savunma Sanayii Teknolojileri</span>  
-                    <span class="skill-tag">⚛️ Nükleer Enerji Takibi</span>  
-                    <span class="skill-tag">👥 Liderlik & Mentorluk</span>  
-                    <span class="skill-tag">💡 Girişimcilik Ekosistemi</span>  
-                </div>  
-            </div>  
-        </div>  
-    </div>  
-</section>  
-
-<section id="sayilar">  
-    <div class="container">  
-        <h3>Rakamlarla <span>Vizyon</span></h3>  
-        <div class="stats-container">  
-            <div class="stat-box fade-in">  
-                <div class="stat-number" data-target="15">0</div>  
-                <div class="stat-text">Eğitim & Sertifika</div>  
-            </div>  
-            <div class="stat-box fade-in">  
-                <div class="stat-number" data-target="8">0</div>  
-                <div class="stat-text">Ziyaret Edilen Şehir</div>  
-            </div>  
-            <div class="stat-box fade-in">  
-                <div class="stat-number" data-target="20">0</div>  
-                <div class="stat-text">Sivil Toplum & Proje</div>  
-            </div>  
-            <div class="stat-box fade-in">  
-                <div class="stat-number" data-target="1">0</div>  
-                <div class="stat-text">Hedef: Savunma Sanayii</div>  
-            </div>  
-        </div>  
-    </div>  
-</section>  
-
-<section id="donanim" class="alt-bg">  
-    <div class="container">  
-        <h3>Sistem <span>Donanımı</span></h3>  
-        <div class="grid-container" style="grid-template-columns: 1fr 1fr;">
-            
-            <div class="skill-bars-container fade-in">
-                <h4 style="color: #fff; margin-bottom: 20px; font-family: 'Fira Code', monospace;">>_ YAZILIM & TEKNOLOJİ</h4>
-                
-                <div class="skill-box">
-                    <div class="skill-label"><span>Python / Yapay Zeka</span> <span class="glow">85%</span></div>
-                    <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 85%;"></div></div>
-                </div>
-                
-                <div class="skill-box">
-                    <div class="skill-label"><span>C / C++ (Savunma & Gömülü)</span> <span class="glow">60%</span></div>
-                    <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 60%;"></div></div>
-                </div>
-                
-                <div class="skill-box">
-                    <div class="skill-label"><span>Veri Analizi & Otonom Sistemler</span> <span class="glow">70%</span></div>
-                    <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 70%;"></div></div>
-                </div>
-            </div>
-
-            <div class="about-text fade-in" style="transform: none; margin: 0; display: flex; flex-direction: column; justify-content: center;">
-                <h4 style="color: var(--accent-color); margin-bottom: 15px;">Sürekli Gelişen Altyapı</h4>
-                <p>Hedefim olan bilgisayar mühendisliği ve savunma sanayii doğrultusunda algoritmik düşünme becerilerimi her geçen gün güçlendiriyorum. Sadece kodun nasıl çalıştığını değil, bir otonom sistemin sahada nasıl tepki vereceğini tasarlamak üzerine yoğunlaşıyorum.</p>
-            </div>
-            
-        </div>
-    </div>  
-</section>
-
-<section id="projeler">  
-    <div class="container">  
-        <h3>Görev Kayıtları <span>(Projeler)</span></h3>  
-        <div class="grid-container">  
-            
-            <div class="card project-card fade-in">
-                <span class="project-status">[ AKTİF GELİŞTİRME ]</span>
-                <h4>TeknoAI-T Yapay Zeka Modeli</h4>
-                <p>TeknoAI-T takımı bünyesinde geliştirdiğimiz, görüntü işleme ve veri analizi yeteneklerine sahip yapay zeka entegrasyon projesi.</p>
-                <a href="#" class="cert-btn" style="border-style: dashed;">>_ Detayları Gör</a>
-            </div>
-
-            <div class="card project-card fade-in">
-                <span class="project-status">[ PLANLAMA AŞAMASI ]</span>
-                <h4>Otonom İHA Algoritması</h4>
-                <p>Milli Teknoloji Hamlesi vizyonuyla, savunma sanayii standartlarında uçuş güvenliği ve hedef tespiti yapabilen kavramsal algoritma tasarımı.</p>
-                <a href="#" class="cert-btn" style="border-style: dashed;">>_ Detayları Gör</a>
-            </div>
-
-            <div class="card project-card fade-in">
-                <span class="project-status">[ TAMAMLANDI ]</span>
-                <h4>Dijital Bilinç & Farkındalık Ağı</h4>
-                <p>Sivil toplum kuruluşlarıyla entegre çalışan, gençleri teknoloji bağımlılığından üretken teknolojiye yönlendiren saha çalışması arşivi.</p>
-                <a href="#" class="cert-btn" style="border-style: dashed;">>_ Detayları Gör</a>
-            </div>
-            
-            <div class="card project-card fade-in">
-                <span class="project-status">[ PLANLANAN ]</span>
-                <h4>Teknofest Şanlıurfa</h4>
-                <p>Teknoloji ve inovasyon heyecanını bölgede yaşamak ve projelere vizyon katmak için planlanan katılım ve saha çalışması.</p>
-                <a href="#" class="cert-btn" style="border-style: dashed;">>_ Detayları Gör</a>
-            </div>
-
-            <div class="card project-card fade-in">
-                <span class="project-status">[ PLANLANAN ]</span>
-                <h4>Malatya Teknoloji ve Girişimcilik Zirvesi</h4>
-                <p>Girişimcilik ekosistemindeki yeni trendleri keşfetmek ve güçlü bir profesyonel ağ oluşturmak amacıyla katılınacak zirve.</p>
-                <a href="#" class="cert-btn" style="border-style: dashed;">>_ Detayları Gör</a>
-            </div>
-
-        </div>  
-    </div>  
-</section>
-
-<section id="stk" class="alt-bg">
-    <div class="container">
-        <h3>Saha Ağım & <span>Gönüllülük</span></h3>
-        <p style="text-align: center; color: #aaa; max-width: 700px; margin: 0 auto; margin-bottom: 40px;">Sadece dijital dünyada değil, fiziksel dünyada da iz bırakmak gerektiğine inanıyorum. Toplumsal fayda için sahada omuz omuza çalıştığım kurumlar:</p>
-        
-        <div class="ngo-grid fade-in">
-            <div class="ngo-card"><div class="ngo-icon">🚀</div><div class="ngo-name">T3 Vakfı</div></div>
-            <div class="ngo-card"><div class="ngo-icon">💚</div><div class="ngo-name">Yeşilay</div></div>
-            <div class="ngo-card"><div class="ngo-icon">🧠</div><div class="ngo-name">Habitat Derneği</div></div>
-            <div class="ngo-card"><div class="ngo-icon">⛺</div><div class="ngo-name">AFAD</div></div>
-            <div class="ngo-card"><div class="ngo-icon">🩸</div><div class="ngo-name">Türk Kızılay</div></div>
-            <div class="ngo-card"><div class="ngo-icon">🌱</div><div class="ngo-name">TEMA Vakfı</div></div>
-        </div>
-    </div>
-</section>
-
-<section id="yolculuk">  
-    <div class="container">  
-        <h3>Vizyon <span>Yolculuğum</span></h3>  
-        <div class="timeline">  
-            <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">21 Haz - 1 Eyl 2024</span><h4>Kemer'de İlk Otel Deneyimi</h4><p>İletişim, kriz yönetimi ve disiplini sahada tecrübe ettiğim ilk dönüm noktası.</p></div></div>  
-            <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">28 Eylül 2024</span><h4>Sivil Toplumu Keşif</h4><p>Toplum için değer üretme kararı alıp STK ekosistemini araştırmaya başladığım gün.</p></div></div>  
-            <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">29 Eyl - 8 Eki 2024</span><h4>TEKNOFEST Adana</h4><p>Roketlerin gölgesinde mühendislik hedeflerimin perçinlendiği devasa deneyim.</p></div></div>  
-            <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">6 Aralık 2024</span><h4>Yeşilay Ortaokul Etkinliği</h4><p>Sahaya inip genç nesillere farkındalık aşılamanın gururunu yaşadığım ilk etkinlik.</p></div></div>  
-            <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">21 Aralık 2024</span><h4>Yeşilay GSB Batman Çalıştayı</h4><p>Kendi şehrimde gençlik stratejileri üretmek adına masaya oturduğum beyin fırtınası.</p></div></div>  
-            <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">17 - 20 Ocak 2025</span><h4>T3 Vakfı Sarıyer Kampı</h4><p>T3 Vakfı ailesiyle eğitimlerden ve takım ruhu çalışmalarından geçtiğim muazzam kamp.</p></div></div>  
-            <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">26 - 28 Ocak 2025</span><h4>Ankara Gönüllülük Konferansı</h4><p>Sivil toplum ağımı ulusal boyuta taşıdığım, vizyon paylaşımı yaptığım buluşma.</p></div></div>  
-            <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">1 - 2 Haziran 2025</span><h4>Batman İçin Kayseri Finali</h4><p>Şehrimin ruhuna ve coşkusuna ortak olmak için Kayseri'deki final maçında yer alışım.</p></div></div>  
-            <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">7 - 13 Eylül 2025</span><h4>Manisa Kula GSB Kampı</h4><p>Doğayla iç içe dayanıklılık ve liderlik eğitimi aldığım verimli bir hafta.</p></div></div>  
-            <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">15 - 22 Eylül 2025</span><h4>TEKNOFEST İstanbul</h4><p>Teknoloji devriminin kalbinde organizasyon yönetimini mutfakta deneyimlediğim süreç.</p></div></div>  
-            <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">10 Ekim 2025</span><h4>MardinUP Etkinliği</h4><p>Bölgesel girişimcilik ekosistemini desteklemek için katıldığım ufuk açıcı etkinlik.</p></div></div>  
-            <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">25 - 26 Ekim 2025</span><h4>Gaziantep DevFest</h4><p>Google topluluklarıyla buluştuğum, yazılım teknolojilerindeki son trendleri yakaladığım an.</p></div></div>  
-            <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">18 Kasım 2025</span><h4>Batman Genç MÜSİAD</h4><p>İş dünyası ve girişimcilik vizyonu üzerine attığım güçlü bir ağ kurma adımı.</p></div></div>  
-            <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">21 Aralık 2025</span><h4>Diyarbakır Küre Çalıştayı</h4><p>Bölgesel vizyon geliştirme ve stratejik planlama üzerine gerçekleştirdiğimiz önemli çalıştay.</p></div></div>
-            <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">13 - 15 Şubat 2026</span><h4>Elazığ YZ Eğitmen Eğitimi</h4><p>Yapay Zeka elçisi olma yolunda, dijital geleceği inşa etmek için aldığım kritik eğitim.</p></div></div>  
-        </div>  
-    </div>  
-</section>  
-
-<section id="sertifikalar" class="alt-bg">  
-    <div class="container">  
-        <h3>Sertifikalar & <span>Başarılar</span></h3>  
-        <div class="grid-container">  
-            <div class="card fade-in"><div class="cert-icon">🛡️</div><h4>SSB Kariyer Buluşmaları-2</h4><p>Savunma Sanayii Başkanlığı vizyoner kariyer buluşmaları katılım belgesi.</p><a href="#" class="cert-btn">Belgeyi Gör</a></div>  
-            <div class="card fade-in"><div class="cert-icon">☁️</div><h4>Google Cloud Üretken YZ</h4><p>Google Cloud platformu Üretken Yapay Zeka temelleri giriş eğitimi.</p><a href="#" class="cert-btn">Belgeyi Gör</a></div>  
-            <div class="card fade-in"><div class="cert-icon">🚁</div><h4>T3 Akademi İHA Eğitimi</h4><p>T3 Akademi başarıyla tamamlanan İnsansız Hava Araçları (İHA) eğitim belgesi.</p><a href="#" class="cert-btn">Belgeyi Gör</a></div>  
-            <div class="card fade-in"><div class="cert-icon">🧠</div><h4>Habitat Derneği YZ Eğitimi</h4><p>Habitat Derneği "Yapay Zeka Yıldızları" projesi kapsamında yapay zeka eğitim sertifikası.</p><a href="#" class="cert-btn">Belgeyi Gör</a></div>  
-            <div class="card fade-in"><div class="cert-icon">🚀</div><h4>TEKNOFEST İstanbul Teşekkürü</h4><p>TEKNOFEST İstanbul organizasyonundaki aktif görevler için teşekkür belgesi.</p><a href="#" class="cert-btn">Belgeyi Gör</a></div>  
-            <div class="card fade-in"><div class="cert-icon">🚀</div><h4>TEKNOFEST Adana Teşekkürü</h4><p>TEKNOFEST Adana'da gösterilen üstün gönüllülük ve saha koordinasyonu teşekkürü.</p><a href="#" class="cert-btn">Belgeyi Gör</a></div>  
-            <div class="card fade-in"><div class="cert-icon">🌍</div><h4>UNICEF PSEA Eğitim Belgesi</h4><p>İnsani yardım standartları ve uluslararası etik kuralları içeren PSEA eğitim sertifikası.</p><a href="#" class="cert-btn">Belgeyi Gör</a></div>  
-            <div class="card fade-in"><div class="cert-icon">💚</div><h4>Yeşilay Aktif Gönüllüsü</h4><p>Yeşilay bünyesinde bağımlılıkla mücadele odaklı aktif gönüllülük belgesi.</p><a href="#" class="cert-btn">Belgeyi Gör</a></div>  
-            <div class="card fade-in"><div class="cert-icon">🤝</div><h4>İhtiyaç Haritası Akran Eğitimi</h4><p>Sosyal sorumluluk odaklı akrandan akrana eğitim katılım belgesi.</p><a href="#" class="cert-btn">Belgeyi Gör</a></div>  
-            <div class="card fade-in"><div class="cert-icon">💡</div><h4>MardinUP Katılım Belgesi</h4><p>Bölgesel girişimcilik ve inovasyon ekosistemini destekleyen etkinlik katılım belgesi.</p><a href="#" class="cert-btn">Belgeyi Gör</a></div>  
-            <div class="card fade-in"><div class="cert-icon">💼</div><h4>Genç MÜSİAD Katılım Belgesi</h4><p>İş dünyası, ekonomi ve girişimcilik vizyonunu geliştirmek amacıyla etkinlik belgesi.</p><a href="#" class="cert-btn">Belgeyi Gör</a></div>  
-            <div class="card fade-in"><div class="cert-icon">🚗</div><h4>OİB Otomotiv Yaz Kampı</h4><p>Uludağ Otomotiv Endüstrisi yenilikçi mobilite teknolojileri yaz kampı belgesi.</p><a href="#" class="cert-btn">Belgeyi Gör</a></div>  
-            <div class="card fade-in"><div class="cert-icon">⛺</div><h4>GSB Çalıştay Katılım Belgesi</h4><p>Gençlik ve Spor Bakanlığı gençlik politikaları vizyon geliştirme çalıştayı belgesi.</p><a href="#" class="cert-btn">Belgeyi Gör</a></div>  
-            <div class="card fade-in"><div class="cert-icon">🌱</div><h4>TEMA YZ Doğayı Koruma</h4><p>Yapay zeka teknolojilerinin doğa koruma süreçlerine entegrasyonu eğitim belgesi.</p><a href="#" class="cert-btn">Belgeyi Gör</a></div>  
-            <div class="card fade-in"><div class="cert-icon">📝</div><h4>Turkcell Geleceği Yazanlar Word</h4><p>Dijital okuryazarlık ve ofis programları eğitim sertifikası.</p><a href="#" class="cert-btn">Belgeyi Gör</a></div>  
-        </div>  
-    </div>  
-</section>  
-
-<section id="galeri">  
-    <div class="container">  
-        <h3>Sahadan <span>Kareler</span></h3>  
-        <div class="gallery-grid">  
-            <img src="saha1.jpg" alt="TEKNOFEST Saha Görevi" class="gallery-img fade-in" onerror="this.src='https://via.placeholder.com/500x300?text=Saha+1+Bekleniyor'">  
-            
-            <img src="saha2.jpg" alt="T3 Vakfı Eğitimleri" class="gallery-img fade-in" onerror="this.src='https://via.placeholder.com/500x300?text=Saha+2+Bekleniyor'">  
-            
-            <img src="saha3.jpg" alt="Yeşilay Etkinliği" class="gallery-img fade-in" onerror="this.src='https://via.placeholder.com/500x300?text=Saha+3+Bekleniyor'">  
-            
-            <img src="saha4.jpg" alt="Takım Çalışması ve Liderlik" class="gallery-img fade-in" onerror="this.src='https://via.placeholder.com/500x300?text=Saha+4+Bekleniyor'">  
-        </div>  
-    </div>  
-</section>
-
-<section id="bulten" class="alt-bg">  
-    <div class="container">  
-        <h3>Teknoloji <span>Radarı</span></h3>  
-        <div class="radar-grid">  
-              
-            <div class="radar-box fade-in">  
-                <h4>📚 Okuma & Takip Listem</h4>  
-                <ul class="radar-list">  
-                    <li><strong>Kitap:</strong> Yapay Zeka Devrimi (Örnek Kitap)</li>  
-                    <li><strong>Araştırma:</strong> Otonom İHA Sistemleri Mimarisi</li>  
-                    <li><strong>Podcast:</strong> Geleceği Yazanlar / TechTalks</li>  
-                    <li><strong>Odak:</strong> Python ve Makine Öğrenmesi Pratikleri</li>  
-                </ul>  
-            </div>  
-
-            <div class="radar-box fade-in">  
-                <h4>📡 Haftalık Pazartesi Bülteni</h4>  
-                <span class="bulletin-date">Güncelleme: 23 Şubat 2026 Pazartesi</span>  
-                <p style="color: #ddd; font-size: 0.95rem; line-height: 1.6;">Bu hafta radarımda neler var? <strong>TeknoAI-T</strong> ekibiyle yapay zeka modelleri üzerine yoğunlaşıyoruz. Ayrıca Savunma Sanayii projelerindeki yeni insansız sistemler duyurularını inceledim. Hedeflerime emin adımlarla yürümeye ve TYT/AYT denemelerinde netlerimi artırmaya devam ediyorum!</p>  
-            </div>  
-
-        </div>  
-    </div>  
-</section>  
-
-<section id="iletisim">  
-    <div class="container">  
-        <h3>Sistem <span>Erişimi</span> (İletişim)</h3>  
-        <form class="contact-form fade-in" action="#" method="POST">  
-            <div class="form-group">  
-                <label>>_ GÖNDERİCİ (Adınız Soyadınız):</label>  
-                <input type="text" placeholder="İsim Giriniz..." required>  
-            </div>  
-            <div class="form-group">  
-                <label>>_ E-POSTA (İletişim Adresi):</label>  
-                <input type="email" placeholder="ornek@domain.com" required>  
-            </div>  
-            <div class="form-group">  
-                <label>>_ VERİ PAKETİ (Mesajınız):</label>  
-                <textarea rows="5" placeholder="İş birliği, proje teklifi veya tanışma mesajınızı yazın..." required></textarea>  
-            </div>  
-            <button type="submit" class="submit-btn">[ KOMUTU ÇALIŞTIR VE GÖNDER ]</button>  
-        </form>  
-    </div>  
-</section>  
-
-<footer>  
-    <p>&copy; 2026 Tüm Hakları Saklıdır. | Muhammed Sevinç - Geleceğin Bilgisayar Mühendisi</p>  
-</footer>  
-
-<script>  
-    // Daktilo Efekti  
-    const words = ["Geleceğin Bilgisayar Mühendisi...", "Yapay Zeka (TeknoAI-T) Geliştiricisi...", "Milli Teknoloji Hamlesi Gönüllüsü...", "Savunma Sanayii Tutkunu..."];  
-    let i = 0, timer;  
-    function typingEffect() {  
-        let word = words[i].split("");  
-        var loopTyping = function() {  
-            if (word.length > 0) { document.getElementById('typewriter').innerHTML += word.shift(); }   
-            else { setTimeout(deletingEffect, 2000); return false; }  
-            timer = setTimeout(loopTyping, 100);  
-        }; loopTyping();  
-    }  
-    function deletingEffect() {  
-        let word = words[i].split("");  
-        var loopDeleting = function() {  
-            if (word.length > 0) { word.pop(); document.getElementById('typewriter').innerHTML = word.join(""); }   
-            else { i = (words.length > (i + 1)) ? i + 1 : 0; typingEffect(); return false; }  
-            timer = setTimeout(loopDeleting, 50);  
-        }; loopDeleting();  
-    }  
-    typingEffect();  
-
-    // Scroll Animasyonları (Harita, Kartlar, Galeriler, Sayaçlar, vb. için)  
-    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };  
-    const observer = new IntersectionObserver((entries, observer) => {  
-        entries.forEach(entry => {  
-            if (entry.isIntersecting) {  
-                entry.target.classList.add('visible');  
-                observer.unobserve(entry.target);   
-            }  
-        });  
-    }, observerOptions);  
-    document.querySelectorAll('.fade-in').forEach((element) => observer.observe(element));  
-
-    // SAYILARIN 0'DAN YUKARI DOĞRU SAYMA ANİMASYONU  
-    const counters = document.querySelectorAll('.stat-number');  
-    const counterObserver = new IntersectionObserver((entries, observer) => {  
-        entries.forEach(entry => {  
-            if (entry.isIntersecting) {  
-                const counter = entry.target;  
-                const updateCount = () => {  
-                    const target = +counter.getAttribute('data-target');  
-                    const count = +counter.innerText;  
-                    const inc = target / 40; // Hız ayarı  
-                    if (count < target) {  
-                        counter.innerText = Math.ceil(count + inc);  
-                        setTimeout(updateCount, 40);  
-                    } else {  
-                        counter.innerText = target + "+";  
-                    }  
-                };  
-                updateCount();  
-                observer.unobserve(counter);  
-            }  
-        });  
-    }, { threshold: 0.5 });  
-    counters.forEach(counter => counterObserver.observe(counter));  
-
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6QQV9KYQ4C"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6QQV9KYQ4C');
 </script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammed Sevinç | Kişisel Portföy</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap');
+:root {
+  --bg-color: #121212;
+  --text-color: #f3f4f6;
+  --accent-color: #e30a17;
+  --card-bg: #1e1e1e;
+  --section-bg: #181818;
+}
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; scroll-behavior:smooth; }
+body { background-color:var(--bg-color); color:var(--text-color); line-height:1.7; overflow-x:hidden; }
 
-</body>  
+/* LANG TOGGLE */
+.lang-toggle {
+  position:fixed; top:20px; right:20px; z-index:2000;
+  background:rgba(18,18,18,0.95); border:2px solid var(--accent-color);
+  border-radius:30px; display:flex; overflow:hidden;
+}
+.lang-btn {
+  padding:6px 16px; font-size:0.8rem; font-weight:700; cursor:pointer;
+  background:transparent; color:var(--text-color); border:none; transition:0.3s;
+  font-family:'Fira Code',monospace;
+}
+.lang-btn.active { background:var(--accent-color); color:#fff; }
+
+/* Navbar */
+nav {
+  position:fixed; top:0; width:100%; padding:20px 50px;
+  display:flex; justify-content:space-between; align-items:center;
+  background:rgba(18,18,18,0.95); backdrop-filter:blur(10px);
+  z-index:1000; border-bottom:1px solid rgba(227,10,23,0.2);
+}
+nav h1 { color:var(--accent-color); font-size:1.5rem; font-weight:800; letter-spacing:1px; }
+nav ul { display:flex; list-style:none; gap:20px; margin-right:80px; }
+nav ul li a { color:var(--text-color); text-decoration:none; font-weight:600; font-size:0.85rem; transition:color 0.3s; }
+nav ul li a:hover { color:var(--accent-color); }
+
+/* Hero Section */
+.hero {
+  min-height:100vh; display:flex; flex-direction:column; justify-content:center;
+  align-items:center; text-align:center; padding:100px 20px 50px 20px;
+  background:radial-gradient(circle at center, #2a0808 0%, var(--bg-color) 70%);
+}
+.profile-img {
+  width:180px; height:180px; border-radius:50%; object-fit:cover;
+  border:4px solid var(--accent-color); box-shadow:0 0 30px rgba(227,10,23,0.5);
+  margin-bottom:25px; animation:float 4s ease-in-out infinite;
+}
+@keyframes float { 0%{transform:translateY(0px)} 50%{transform:translateY(-12px)} 100%{transform:translateY(0px)} }
+.hero h2 { font-size:3rem; margin-bottom:10px; font-weight:800; }
+.typing-container { font-size:1.3rem; color:var(--accent-color); height:35px; margin-bottom:20px; font-weight:300; }
+
+/* TERMINAL PANELİ */
+.terminal-status {
+  background:#050505; border:1px solid #333; border-top:3px solid var(--accent-color);
+  border-radius:8px; text-align:left; margin-top:15px; margin-bottom:25px;
+  width:100%; max-width:450px; font-family:'Fira Code',monospace; box-shadow:0 10px 20px rgba(0,0,0,0.8);
+}
+.terminal-header {
+  background:#111; padding:8px 15px; color:#888; font-size:0.8rem;
+  font-family:'Fira Code',monospace; border-bottom:1px solid #222; display:flex; justify-content:space-between;
+}
+.terminal-body { padding:15px; color:#ddd; font-size:0.9rem; font-family:'Fira Code',monospace; }
+.terminal-body p { margin-bottom:8px; }
+.terminal-body span.cmd { color:var(--accent-color); font-weight:bold; }
+.blink { animation:blinker 1s linear infinite; color:var(--accent-color); font-weight:bold; }
+@keyframes blinker { 50%{opacity:0} }
+
+.social-links { display:flex; gap:15px; margin-top:10px; }
+.social-btn {
+  text-decoration:none; color:var(--text-color); border:2px solid var(--accent-color);
+  padding:10px 25px; border-radius:30px; font-weight:600; font-size:0.9rem; transition:all 0.3s ease;
+}
+.social-btn:hover { background-color:var(--accent-color); color:#fff; box-shadow:0 0 20px rgba(227,10,23,0.6); transform:translateY(-3px); }
+
+/* Sections General */
+section { padding:100px 20px; }
+.container { max-width:1100px; margin:0 auto; }
+.alt-bg { background-color:var(--section-bg); }
+section h3 { font-size:2.5rem; margin-bottom:50px; text-align:center; color:var(--text-color); text-transform:uppercase; letter-spacing:2px; }
+section h3 span { color:var(--accent-color); }
+
+/* Ortak Animasyon Sınıfları */
+.about-text,.card,.timeline-item,.stat-box,.gallery-img,.radar-box,.skill-bars-container,.project-card,.ngo-grid {
+  opacity:0; transform:translateY(50px); transition:all 0.8s ease-out;
+}
+.visible { opacity:1 !important; transform:translateY(0) !important; }
+
+.about-text { background:var(--card-bg); padding:40px; border-radius:15px; border-top:4px solid var(--accent-color); box-shadow:0 10px 30px rgba(0,0,0,0.8); font-size:1.05rem; }
+.about-text p { margin-bottom:15px; }
+.skills-container { display:flex; flex-wrap:wrap; gap:15px; justify-content:center; margin-top:30px; }
+.skill-tag { background:rgba(227,10,23,0.1); color:var(--accent-color); border:1px solid var(--accent-color); padding:10px 20px; border-radius:20px; font-weight:600; font-size:0.95rem; transition:all 0.3s ease; }
+.skill-tag:hover { background:var(--accent-color); color:#fff; transform:scale(1.05); }
+
+/* SAYAÇLAR */
+.stats-container { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
+.stat-box { background:var(--card-bg); padding:30px; border-radius:15px; width:220px; text-align:center; border-bottom:4px solid var(--accent-color); box-shadow:0 10px 20px rgba(0,0,0,0.5); }
+.stat-number { font-size:3rem; font-weight:800; color:var(--accent-color); margin-bottom:10px; font-family:'Fira Code',monospace; }
+.stat-text { font-size:1rem; font-weight:600; color:#ddd; }
+
+/* Timeline */
+.timeline { position:relative; max-width:900px; margin:0 auto; }
+.timeline::after { content:''; position:absolute; width:4px; background-color:var(--accent-color); top:0; bottom:0; left:50%; margin-left:-2px; box-shadow:0 0 15px rgba(227,10,23,0.6); }
+.timeline-item { padding:10px 40px; position:relative; width:50%; }
+.timeline-item:nth-child(odd) { left:0; }
+.timeline-item:nth-child(even) { left:50%; }
+.timeline-item::after { content:''; position:absolute; width:22px; height:22px; right:-11px; background-color:var(--bg-color); border:4px solid var(--accent-color); top:25px; border-radius:50%; z-index:1; transition:transform 0.3s; }
+.timeline-item:nth-child(even):after { left:-11px; }
+.timeline-item:hover::after { transform:scale(1.3); background-color:var(--accent-color); }
+.timeline-content { padding:25px 30px; background:var(--card-bg); position:relative; border-radius:15px; border-bottom:3px solid var(--accent-color); transition:transform 0.3s; }
+.timeline-item:hover .timeline-content { transform:translateY(-5px) scale(1.02); }
+.timeline-date { display:inline-block; color:var(--accent-color); font-weight:800; margin-bottom:10px; font-size:0.85rem; background:rgba(227,10,23,0.1); padding:5px 12px; border-radius:5px; }
+.timeline-content h4 { color:#fff; margin-bottom:10px; font-size:1.2rem; }
+.timeline-content p { font-size:0.95rem; color:#ccc; }
+
+/* Grid Cards */
+.grid-container { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:25px; }
+.card { background:var(--card-bg); padding:30px; border-radius:15px; border-left:4px solid var(--accent-color); display:flex; flex-direction:column; transition:transform 0.3s; }
+.card:hover { transform:translateY(-10px); box-shadow:0 15px 30px rgba(227,10,23,0.15); }
+.card h4 { font-size:1.2rem; margin-bottom:15px; color:#fff; }
+.card p { flex-grow:1; font-size:0.95rem; color:#ddd; }
+.date-badge { display:inline-block; background:var(--accent-color); color:#fff; font-size:0.8rem; padding:3px 10px; border-radius:10px; margin-bottom:15px; font-weight:600; align-self:flex-start; }
+.cert-btn { display:inline-block; margin-top:20px; padding:8px 15px; border:1px solid var(--accent-color); color:var(--accent-color); text-decoration:none; border-radius:5px; font-size:0.9rem; font-weight:600; text-align:center; transition:0.3s; align-self:flex-start; }
+.cert-btn:hover { background:var(--accent-color); color:#fff; box-shadow:0 0 10px rgba(227,10,23,0.5); }
+.cert-icon { font-size:2.5rem; margin-bottom:10px; }
+
+/* GALERİ */
+.gallery-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:15px; }
+.gallery-img { width:100%; height:250px; object-fit:cover; border-radius:10px; border:2px solid #333; transition:all 0.4s ease; cursor:pointer; filter:grayscale(50%); }
+.gallery-img:hover { filter:grayscale(0%); transform:scale(1.05); border-color:var(--accent-color); box-shadow:0 10px 20px rgba(227,10,23,0.4); z-index:2; position:relative; }
+
+/* RADAR */
+.radar-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(350px,1fr)); gap:20px; }
+.radar-box { background:var(--card-bg); padding:30px; border-radius:15px; border-top:4px solid var(--accent-color); }
+.radar-box h4 { font-size:1.4rem; color:#fff; margin-bottom:20px; display:flex; align-items:center; gap:10px; border-bottom:1px solid #333; padding-bottom:10px; }
+.radar-list { list-style:none; }
+.radar-list li { margin-bottom:15px; font-size:0.95rem; color:#ddd; position:relative; padding-left:20px; }
+.radar-list li::before { content:'>'; position:absolute; left:0; color:var(--accent-color); font-weight:bold; font-family:'Fira Code',monospace; }
+.bulletin-date { display:inline-block; background:var(--accent-color); padding:3px 8px; border-radius:5px; font-size:0.8rem; font-weight:bold; margin-bottom:15px; }
+
+/* İLETİŞİM FORMU */
+.contact-form { background:#050505; border:1px solid #333; padding:30px; border-radius:10px; max-width:600px; margin:0 auto; box-shadow:0 10px 30px rgba(0,0,0,0.8); }
+.form-group { margin-bottom:20px; display:flex; flex-direction:column; }
+.form-group label { color:var(--accent-color); font-family:'Fira Code',monospace; margin-bottom:8px; font-size:0.9rem; }
+.form-group input,.form-group textarea { background:#111; border:1px solid #333; color:#fff; padding:12px; border-radius:5px; font-family:'Fira Code',monospace; transition:0.3s; }
+.form-group input:focus,.form-group textarea:focus { outline:none; border-color:var(--accent-color); box-shadow:0 0 10px rgba(227,10,23,0.3); }
+.submit-btn { background:transparent; color:var(--accent-color); border:2px solid var(--accent-color); padding:12px 20px; font-family:'Fira Code',monospace; font-weight:bold; font-size:1rem; cursor:pointer; border-radius:5px; transition:0.3s; width:100%; }
+.submit-btn:hover { background:var(--accent-color); color:#fff; }
+
+/* Yetenek Barları */
+.skill-bars-container { background:#050505; border:1px solid #333; padding:25px; border-radius:8px; box-shadow:0 5px 15px rgba(0,0,0,0.5); }
+.skill-box { margin-bottom:20px; }
+.skill-label { display:flex; justify-content:space-between; font-family:'Fira Code',monospace; font-size:0.9rem; color:#aaa; margin-bottom:8px; }
+.skill-label span.glow { color:var(--accent-color); font-weight:bold; }
+.skill-bar-bg { width:100%; background:#111; border:1px solid #222; border-radius:4px; height:12px; overflow:hidden; }
+.skill-bar-fill { height:100%; background:var(--accent-color); border-radius:4px; box-shadow:0 0 10px rgba(227,10,23,0.5); position:relative; }
+
+/* STK */
+.ngo-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:15px; text-align:center; margin-top:30px; }
+.ngo-card { background:#111; border:1px solid #333; padding:20px 10px; border-radius:10px; transition:all 0.3s ease; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+.ngo-card:hover { border-color:var(--accent-color); transform:translateY(-5px); box-shadow:0 5px 15px rgba(227,10,23,0.2); }
+.ngo-icon { font-size:2rem; margin-bottom:10px; }
+.ngo-name { font-family:'Fira Code',monospace; font-size:0.85rem; color:#ddd; font-weight:bold; }
+
+/* Proje Kartları */
+.project-card { border-top:4px solid #444; border-left:none; }
+.project-card:hover { border-top-color:var(--accent-color); }
+.project-status { display:inline-block; padding:3px 8px; font-size:0.75rem; font-family:'Fira Code',monospace; background:rgba(227,10,23,0.15); color:var(--accent-color); border:1px solid var(--accent-color); border-radius:4px; margin-bottom:10px; }
+
+footer { text-align:center; padding:40px; background:#080808; border-top:1px solid #222; }
+
+@media screen and (max-width:768px) {
+  nav { padding:15px 20px; }
+  nav ul { display:none; }
+  .hero h2 { font-size:2.2rem; }
+  section { padding:70px 15px; }
+  .timeline::after { left:31px; }
+  .timeline-item { width:100%; padding-left:70px; padding-right:15px; }
+  .timeline-item:nth-child(even) { left:0%; }
+  .timeline-item::after { left:21px; }
+  .timeline-item:nth-child(even):after { left:21px; }
+  .terminal-status { max-width:90%; }
+  .grid-container[style] { grid-template-columns:1fr !important; }
+  .lang-toggle { top:auto; bottom:20px; right:20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- LANGUAGE TOGGLE -->
+<div class="lang-toggle">
+  <button class="lang-btn active" onclick="setLang('tr')">TR</button>
+  <button class="lang-btn" onclick="setLang('en')">EN</button>
+</div>
+
+<nav>
+  <h1>Portföy.</h1>
+  <ul>
+    <li><a href="#hakkimda" data-tr="Hakkımda" data-en="About">Hakkımda</a></li>
+    <li><a href="#donanim" data-tr="Yetenekler" data-en="Skills">Yetenekler</a></li>
+    <li><a href="#projeler" data-tr="Projeler" data-en="Projects">Projeler</a></li>
+    <li><a href="#yolculuk" data-tr="Harita" data-en="Timeline">Harita</a></li>
+    <li><a href="#sertifikalar" data-tr="Sertifikalar" data-en="Certificates">Sertifikalar</a></li>
+    <li><a href="#bulten" data-tr="Okuma & Bülten" data-en="Reading & Bulletin">Okuma & Bülten</a></li>
+    <li><a href="#iletisim" data-tr="İletişim" data-en="Contact">İletişim</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <img src="profil.jpg" alt="Muhammed Sevinç" class="profile-img" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
+  <h2 data-tr="Merhaba, Ben Muhammed" data-en="Hello, I'm Muhammed">Merhaba, Ben Muhammed</h2>
+  <div class="typing-container">
+    <span id="typewriter"></span><span class="cursor">|</span>
+  </div>
+
+  <div class="terminal-status">
+    <div class="terminal-header">
+      <span>root@muhammed:~# system_status</span>
+      <span>[ <span data-tr="AKTİF" data-en="ACTIVE">AKTİF</span> ]</span>
+    </div>
+    <div class="terminal-body">
+      <p><span class="cmd">> <span data-tr="Konum_" data-en="Location_">Konum_</span></span> Batman, Türkiye</p>
+      <p><span class="cmd">> <span data-tr="Ana Hedef_" data-en="Main Goal_">Ana Hedef_</span></span> <span data-tr="Bilgisayar Müh. & Savunma Sanayii" data-en="Computer Eng. & Defense Industry">Bilgisayar Müh. & Savunma Sanayii</span></p>
+      <p><span class="cmd">> <span data-tr="Güncel Odak_" data-en="Current Focus_">Güncel Odak_</span></span> <span data-tr="TYT/AYT & TeknoAI-T Projeleri" data-en="University Exams & TeknoAI-T Projects">TYT/AYT & TeknoAI-T Projeleri</span></p>
+      <p><span class="cmd">> <span data-tr="Sistem Modu_" data-en="System Mode_">Sistem Modu_</span></span> <span class="blink" data-tr="Sürekli Gelişim Gözlemleniyor..." data-en="Continuous Growth Detected...">Sürekli Gelişim Gözlemleniyor...</span></p>
+    </div>
+  </div>
+
+  <div class="social-links">
+    <a href="BURAYA_LINKEDIN_LINKINI_YAPISTIR" target="_blank" class="social-btn">LinkedIn</a>
+    <a href="BURAYA_GITHUB_LINKINI_YAPISTIR" target="_blank" class="social-btn">GitHub</a>
+    <a href="BURAYA_INSTAGRAM_LINKINI_YAPISTIR" target="_blank" class="social-btn">Instagram</a>
+  </div>
+</section>
+
+<!-- HAKKIMDA -->
+<section id="hakkimda" class="alt-bg">
+  <div class="container">
+    <h3 data-tr="Ben <span>Kimim?</span>" data-en="<span>About</span> Me">Ben <span>Kimim?</span></h3>
+    <div class="about-grid">
+      <div class="about-text fade-in">
+        <p data-tr="Turizm sektöründe sahada çalışarak kazandığım insan ilişkileri, kriz yönetimi ve dinamik düşünme becerilerini; teknoloji dünyasının analitik ve mühendislik yapısıyla birleştiriyorum. Sadece kod yazan biri değil, aynı zamanda toplum için değer üreten, teknolojiyi bir amaç değil, ülkesini ileri taşıyacak bir araç olarak gören bir teknoloji sevdalısıyım."
+           data-en="I combine the interpersonal skills, crisis management, and dynamic thinking I gained while working in the tourism sector with the analytical and engineering mindset of the tech world. I'm not just someone who writes code — I'm a technology enthusiast who creates value for society and sees technology not as an end, but as a tool to advance my country.">Turizm sektöründe sahada çalışarak kazandığım insan ilişkileri, kriz yönetimi ve dinamik düşünme becerilerini; teknoloji dünyasının analitik ve mühendislik yapısıyla birleştiriyorum. Sadece kod yazan biri değil, aynı zamanda toplum için değer üreten, teknolojiyi bir amaç değil, ülkesini ileri taşıyacak bir araç olarak gören bir teknoloji sevdalısıyım.</p>
+        <p data-tr="Özellikle <strong>Yapay Zeka</strong>, <strong>Savunma Sanayii</strong> ve <strong>Nükleer Enerji</strong> alanlarındaki küresel yenilikleri yakından takip ediyor, Girişimcilik360 ekosisteminde aktif olarak vizyonumu genişletiyorum. Milli Teknoloji Hamlesi ruhunu içselleştirmiş biri olarak en büyük hayalim; geleceğin donanımlı bir bilgisayar mühendisi olup, ülkemin otonom sistemlerine, havacılık teknolojilerine ve kritik savunma yazılımlarına imza atacak mimarlardan biri olmak."
+           data-en="I closely follow global innovations in <strong>Artificial Intelligence</strong>, <strong>Defense Industry</strong>, and <strong>Nuclear Energy</strong>, while actively expanding my vision in the Girişimcilik360 ecosystem. Having internalized the spirit of the National Technology Initiative, my biggest dream is to become a well-equipped computer engineer and one of the architects who will contribute to my country's autonomous systems, aviation technologies, and critical defense software.">Özellikle <strong>Yapay Zeka</strong>, <strong>Savunma Sanayii</strong> ve <strong>Nükleer Enerji</strong> alanlarındaki küresel yenilikleri yakından takip ediyor, Girişimcilik360 ekosisteminde aktif olarak vizyonumu genişletiyorum. Milli Teknoloji Hamlesi ruhunu içselleştirmiş biri olarak en büyük hayalim; geleceğin donanımlı bir bilgisayar mühendisi olup, ülkemin otonom sistemlerine, havacılık teknolojilerine ve kritik savunma yazılımlarına imza atacak mimarlardan biri olmak.</p>
+        <div class="skills-container">
+          <span class="skill-tag">🤖 <span data-tr="Yapay Zeka (AI)" data-en="Artificial Intelligence (AI)">Yapay Zeka (AI)</span></span>
+          <span class="skill-tag">🛡️ <span data-tr="Savunma Sanayii Teknolojileri" data-en="Defense Industry Technologies">Savunma Sanayii Teknolojileri</span></span>
+          <span class="skill-tag">⚛️ <span data-tr="Nükleer Enerji Takibi" data-en="Nuclear Energy Tracking">Nükleer Enerji Takibi</span></span>
+          <span class="skill-tag">👥 <span data-tr="Liderlik & Mentorluk" data-en="Leadership & Mentoring">Liderlik & Mentorluk</span></span>
+          <span class="skill-tag">💡 <span data-tr="Girişimcilik Ekosistemi" data-en="Entrepreneurship Ecosystem">Girişimcilik Ekosistemi</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAYILAR -->
+<section id="sayilar">
+  <div class="container">
+    <h3 data-tr="Rakamlarla <span>Vizyon</span>" data-en="Vision in <span>Numbers</span>">Rakamlarla <span>Vizyon</span></h3>
+    <div class="stats-container">
+      <div class="stat-box fade-in">
+        <div class="stat-number" data-target="15">0</div>
+        <div class="stat-text" data-tr="Eğitim & Sertifika" data-en="Training & Certificates">Eğitim & Sertifika</div>
+      </div>
+      <div class="stat-box fade-in">
+        <div class="stat-number" data-target="8">0</div>
+        <div class="stat-text" data-tr="Ziyaret Edilen Şehir" data-en="Cities Visited">Ziyaret Edilen Şehir</div>
+      </div>
+      <div class="stat-box fade-in">
+        <div class="stat-number" data-target="20">0</div>
+        <div class="stat-text" data-tr="Sivil Toplum & Proje" data-en="Civil Society & Projects">Sivil Toplum & Proje</div>
+      </div>
+      <div class="stat-box fade-in">
+        <div class="stat-number" data-target="1">0</div>
+        <div class="stat-text" data-tr="Hedef: Savunma Sanayii" data-en="Goal: Defense Industry">Hedef: Savunma Sanayii</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DONANIM -->
+<section id="donanim" class="alt-bg">
+  <div class="container">
+    <h3 data-tr="Sistem <span>Donanımı</span>" data-en="System <span>Hardware</span>">Sistem <span>Donanımı</span></h3>
+    <div class="grid-container" style="grid-template-columns: 1fr 1fr;">
+      <div class="skill-bars-container fade-in">
+        <h4 style="color:#fff;margin-bottom:20px;font-family:'Fira Code',monospace;">>_ <span data-tr="YAZILIM & TEKNOLOJİ" data-en="SOFTWARE & TECHNOLOGY">YAZILIM & TEKNOLOJİ</span></h4>
+        <div class="skill-box">
+          <div class="skill-label">
+            <span>Python / <span data-tr="Yapay Zeka" data-en="Artificial Intelligence">Yapay Zeka</span></span>
+            <span class="glow">85%</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:85%;"></div></div>
+        </div>
+        <div class="skill-box">
+          <div class="skill-label">
+            <span>C / C++ (<span data-tr="Savunma & Gömülü" data-en="Defense & Embedded">Savunma & Gömülü</span>)</span>
+            <span class="glow">60%</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:60%;"></div></div>
+        </div>
+        <div class="skill-box">
+          <div class="skill-label">
+            <span data-tr="Veri Analizi & Otonom Sistemler" data-en="Data Analysis & Autonomous Systems">Veri Analizi & Otonom Sistemler</span>
+            <span class="glow">70%</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:70%;"></div></div>
+        </div>
+      </div>
+      <div class="about-text fade-in" style="transform:none;margin:0;display:flex;flex-direction:column;justify-content:center;">
+        <h4 style="color:var(--accent-color);margin-bottom:15px;" data-tr="Sürekli Gelişen Altyapı" data-en="Continuously Evolving Infrastructure">Sürekli Gelişen Altyapı</h4>
+        <p data-tr="Hedefim olan bilgisayar mühendisliği ve savunma sanayii doğrultusunda algoritmik düşünme becerilerimi her geçen gün güçlendiriyorum. Sadece kodun nasıl çalıştığını değil, bir otonom sistemin sahada nasıl tepki vereceğini tasarlamak üzerine yoğunlaşıyorum."
+           data-en="I strengthen my algorithmic thinking skills every day in line with my goal of computer engineering and defense industry. I focus not just on how code works, but on designing how an autonomous system will respond in the field.">Hedefim olan bilgisayar mühendisliği ve savunma sanayii doğrultusunda algoritmik düşünme becerilerimi her geçen gün güçlendiriyorum. Sadece kodun nasıl çalıştığını değil, bir otonom sistemin sahada nasıl tepki vereceğini tasarlamak üzerine yoğunlaşıyorum.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJELER -->
+<section id="projeler">
+  <div class="container">
+    <h3 data-tr="Görev Kayıtları <span>(Projeler)</span>" data-en="Mission Logs <span>(Projects)</span>">Görev Kayıtları <span>(Projeler)</span></h3>
+    <div class="grid-container">
+
+      <div class="card project-card fade-in">
+        <span class="project-status">[ <span data-tr="AKTİF GELİŞTİRME" data-en="ACTIVE DEVELOPMENT">AKTİF GELİŞTİRME</span> ]</span>
+        <h4>TeknoAI-T <span data-tr="Yapay Zeka Modeli" data-en="AI Model">Yapay Zeka Modeli</span></h4>
+        <p data-tr="TeknoAI-T takımı bünyesinde geliştirdiğimiz, görüntü işleme ve veri analizi yeteneklerine sahip yapay zeka entegrasyon projesi."
+           data-en="An AI integration project developed within the TeknoAI-T team, featuring image processing and data analysis capabilities.">TeknoAI-T takımı bünyesinde geliştirdiğimiz, görüntü işleme ve veri analizi yeteneklerine sahip yapay zeka entegrasyon projesi.</p>
+        <a href="#" class="cert-btn" style="border-style:dashed;">>_ <span data-tr="Detayları Gör" data-en="View Details">Detayları Gör</span></a>
+      </div>
+
+      <div class="card project-card fade-in">
+        <span class="project-status">[ <span data-tr="PLANLAMA AŞAMASI" data-en="PLANNING PHASE">PLANLAMA AŞAMASI</span> ]</span>
+        <h4><span data-tr="Otonom İHA Algoritması" data-en="Autonomous UAV Algorithm">Otonom İHA Algoritması</span></h4>
+        <p data-tr="Milli Teknoloji Hamlesi vizyonuyla, savunma sanayii standartlarında uçuş güvenliği ve hedef tespiti yapabilen kavramsal algoritma tasarımı."
+           data-en="A conceptual algorithm design capable of flight safety and target detection at defense industry standards, aligned with the National Technology Initiative.">Milli Teknoloji Hamlesi vizyonuyla, savunma sanayii standartlarında uçuş güvenliği ve hedef tespiti yapabilen kavramsal algoritma tasarımı.</p>
+        <a href="#" class="cert-btn" style="border-style:dashed;">>_ <span data-tr="Detayları Gör" data-en="View Details">Detayları Gör</span></a>
+      </div>
+
+      <div class="card project-card fade-in">
+        <span class="project-status">[ <span data-tr="TAMAMLANDI" data-en="COMPLETED">TAMAMLANDI</span> ]</span>
+        <h4><span data-tr="Dijital Bilinç & Farkındalık Ağı" data-en="Digital Awareness Network">Dijital Bilinç & Farkındalık Ağı</span></h4>
+        <p data-tr="Sivil toplum kuruluşlarıyla entegre çalışan, gençleri teknoloji bağımlılığından üretken teknolojiye yönlendiren saha çalışması arşivi."
+           data-en="A field work archive integrated with civil society organizations, guiding youth from technology addiction toward productive technology use.">Sivil toplum kuruluşlarıyla entegre çalışan, gençleri teknoloji bağımlılığından üretken teknolojiye yönlendiren saha çalışması arşivi.</p>
+        <a href="#" class="cert-btn" style="border-style:dashed;">>_ <span data-tr="Detayları Gör" data-en="View Details">Detayları Gör</span></a>
+      </div>
+
+      <div class="card project-card fade-in">
+        <span class="project-status">[ <span data-tr="PLANLANAN" data-en="PLANNED">PLANLANAN</span> ]</span>
+        <h4>Teknofest Şanlıurfa</h4>
+        <p data-tr="Teknoloji ve inovasyon heyecanını bölgede yaşamak ve projelere vizyon katmak için planlanan katılım ve saha çalışması."
+           data-en="Planned participation and field work to experience the excitement of technology and innovation in the region and contribute vision to projects.">Teknoloji ve inovasyon heyecanını bölgede yaşamak ve projelere vizyon katmak için planlanan katılım ve saha çalışması.</p>
+        <a href="#" class="cert-btn" style="border-style:dashed;">>_ <span data-tr="Detayları Gör" data-en="View Details">Detayları Gör</span></a>
+      </div>
+
+      <div class="card project-card fade-in">
+        <span class="project-status">[ <span data-tr="PLANLANAN" data-en="PLANNED">PLANLANAN</span> ]</span>
+        <h4><span data-tr="Malatya Teknoloji ve Girişimcilik Zirvesi" data-en="Malatya Technology & Entrepreneurship Summit">Malatya Teknoloji ve Girişimcilik Zirvesi</span></h4>
+        <p data-tr="Girişimcilik ekosistemindeki yeni trendleri keşfetmek ve güçlü bir profesyonel ağ oluşturmak amacıyla katılınacak zirve."
+           data-en="A summit to be attended with the aim of discovering new trends in the entrepreneurship ecosystem and building a strong professional network.">Girişimcilik ekosistemindeki yeni trendleri keşfetmek ve güçlü bir profesyonel ağ oluşturmak amacıyla katılınacak zirve.</p>
+        <a href="#" class="cert-btn" style="border-style:dashed;">>_ <span data-tr="Detayları Gör" data-en="View Details">Detayları Gör</span></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STK -->
+<section id="stk" class="alt-bg">
+  <div class="container">
+    <h3 data-tr="Saha Ağım & <span>Gönüllülük</span>" data-en="My Network & <span>Volunteering</span>">Saha Ağım & <span>Gönüllülük</span></h3>
+    <p style="text-align:center;color:#aaa;max-width:700px;margin:0 auto;margin-bottom:40px;"
+       data-tr="Sadece dijital dünyada değil, fiziksel dünyada da iz bırakmak gerektiğine inanıyorum. Toplumsal fayda için sahada omuz omuza çalıştığım kurumlar:"
+       data-en="I believe it's necessary to leave a mark not only in the digital world, but also in the physical world. Organizations I've worked shoulder to shoulder with for social benefit:">Sadece dijital dünyada değil, fiziksel dünyada da iz bırakmak gerektiğine inanıyorum. Toplumsal fayda için sahada omuz omuza çalıştığım kurumlar:</p>
+    <div class="ngo-grid fade-in">
+      <div class="ngo-card"><div class="ngo-icon">🚀</div><div class="ngo-name">T3 Vakfı</div></div>
+      <div class="ngo-card"><div class="ngo-icon">💚</div><div class="ngo-name">Yeşilay</div></div>
+      <div class="ngo-card"><div class="ngo-icon">🧠</div><div class="ngo-name">Habitat Derneği</div></div>
+      <div class="ngo-card"><div class="ngo-icon">⛺</div><div class="ngo-name">AFAD</div></div>
+      <div class="ngo-card"><div class="ngo-icon">🩸</div><div class="ngo-name">Türk Kızılay</div></div>
+      <div class="ngo-card"><div class="ngo-icon">🌱</div><div class="ngo-name">TEMA Vakfı</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="yolculuk">
+  <div class="container">
+    <h3 data-tr="Vizyon <span>Yolculuğum</span>" data-en="My Vision <span>Journey</span>">Vizyon <span>Yolculuğum</span></h3>
+    <div class="timeline">
+
+      <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">21 Haz - 1 Eyl 2024</span>
+        <h4 data-tr="Kemer'de İlk Otel Deneyimi" data-en="First Hotel Experience in Kemer">Kemer'de İlk Otel Deneyimi</h4>
+        <p data-tr="İletişim, kriz yönetimi ve disiplini sahada tecrübe ettiğim ilk dönüm noktası." data-en="My first milestone where I experienced communication, crisis management, and discipline in the field.">İletişim, kriz yönetimi ve disiplini sahada tecrübe ettiğim ilk dönüm noktası.</p>
+      </div></div>
+
+      <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">28 Eylül 2024</span>
+        <h4 data-tr="Sivil Toplumu Keşif" data-en="Discovering Civil Society">Sivil Toplumu Keşif</h4>
+        <p data-tr="Toplum için değer üretme kararı alıp STK ekosistemini araştırmaya başladığım gün." data-en="The day I decided to create value for society and began exploring the NGO ecosystem.">Toplum için değer üretme kararı alıp STK ekosistemini araştırmaya başladığım gün.</p>
+      </div></div>
+
+      <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">29 Eyl - 8 Eki 2024</span>
+        <h4>TEKNOFEST Adana</h4>
+        <p data-tr="Roketlerin gölgesinde mühendislik hedeflerimin perçinlendiği devasa deneyim." data-en="A massive experience in the shadow of rockets where my engineering goals were solidified.">Roketlerin gölgesinde mühendislik hedeflerimin perçinlendiği devasa deneyim.</p>
+      </div></div>
+
+      <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">6 Aralık 2024</span>
+        <h4 data-tr="Yeşilay Ortaokul Etkinliği" data-en="Yeşilay Middle School Event">Yeşilay Ortaokul Etkinliği</h4>
+        <p data-tr="Sahaya inip genç nesillere farkındalık aşılamanın gururunu yaşadığım ilk etkinlik." data-en="The first event where I took to the field and felt the pride of raising awareness among younger generations.">Sahaya inip genç nesillere farkındalık aşılamanın gururunu yaşadığım ilk etkinlik.</p>
+      </div></div>
+
+      <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">21 Aralık 2024</span>
+        <h4 data-tr="Yeşilay GSB Batman Çalıştayı" data-en="Yeşilay GSB Batman Workshop">Yeşilay GSB Batman Çalıştayı</h4>
+        <p data-tr="Kendi şehrimde gençlik stratejileri üretmek adına masaya oturduğum beyin fırtınası." data-en="A brainstorming session in my own city to develop youth strategies.">Kendi şehrimde gençlik stratejileri üretmek adına masaya oturduğum beyin fırtınası.</p>
+      </div></div>
+
+      <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">17 - 20 Ocak 2025</span>
+        <h4 data-tr="T3 Vakfı Sarıyer Kampı" data-en="T3 Foundation Sarıyer Camp">T3 Vakfı Sarıyer Kampı</h4>
+        <p data-tr="T3 Vakfı ailesiyle eğitimlerden ve takım ruhu çalışmalarından geçtiğim muazzam kamp." data-en="An amazing camp with the T3 Foundation family, filled with training and team-building activities.">T3 Vakfı ailesiyle eğitimlerden ve takım ruhu çalışmalarından geçtiğim muazzam kamp.</p>
+      </div></div>
+
+      <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">26 - 28 Ocak 2025</span>
+        <h4 data-tr="Ankara Gönüllülük Konferansı" data-en="Ankara Volunteering Conference">Ankara Gönüllülük Konferansı</h4>
+        <p data-tr="Sivil toplum ağımı ulusal boyuta taşıdığım, vizyon paylaşımı yaptığım buluşma." data-en="A gathering where I expanded my civil society network to a national level and shared my vision.">Sivil toplum ağımı ulusal boyuta taşıdığım, vizyon paylaşımı yaptığım buluşma.</p>
+      </div></div>
+
+      <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">1 - 2 Haziran 2025</span>
+        <h4 data-tr="Batman İçin Kayseri Finali" data-en="Kayseri Final for Batman">Batman İçin Kayseri Finali</h4>
+        <p data-tr="Şehrimin ruhuna ve coşkusuna ortak olmak için Kayseri'deki final maçında yer alışım." data-en="My participation in the final match in Kayseri to be part of my city's spirit and enthusiasm.">Şehrimin ruhuna ve coşkusuna ortak olmak için Kayseri'deki final maçında yer alışım.</p>
+      </div></div>
+
+      <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">7 - 13 Eylül 2025</span>
+        <h4 data-tr="Manisa Kula GSB Kampı" data-en="Manisa Kula GSB Camp">Manisa Kula GSB Kampı</h4>
+        <p data-tr="Doğayla iç içe dayanıklılık ve liderlik eğitimi aldığım verimli bir hafta." data-en="A productive week in nature, focused on resilience and leadership training.">Doğayla iç içe dayanıklılık ve liderlik eğitimi aldığım verimli bir hafta.</p>
+      </div></div>
+
+      <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">15 - 22 Eylül 2025</span>
+        <h4>TEKNOFEST İstanbul</h4>
+        <p data-tr="Teknoloji devriminin kalbinde organizasyon yönetimini mutfakta deneyimlediğim süreç." data-en="The process where I experienced behind-the-scenes event management at the heart of the technology revolution.">Teknoloji devriminin kalbinde organizasyon yönetimini mutfakta deneyimlediğim süreç.</p>
+      </div></div>
+
+      <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">10 Ekim 2025</span>
+        <h4 data-tr="MardinUP Etkinliği" data-en="MardinUP Event">MardinUP Etkinliği</h4>
+        <p data-tr="Bölgesel girişimcilik ekosistemini desteklemek için katıldığım ufuk açıcı etkinlik." data-en="A horizon-expanding event I attended to support the regional entrepreneurship ecosystem.">Bölgesel girişimcilik ekosistemini desteklemek için katıldığım ufuk açıcı etkinlik.</p>
+      </div></div>
+
+      <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">25 - 26 Ekim 2025</span>
+        <h4>Gaziantep DevFest</h4>
+        <p data-tr="Google topluluklarıyla buluştuğum, yazılım teknolojilerindeki son trendleri yakaladığım an." data-en="The moment I met with Google communities and caught up on the latest trends in software technologies.">Google topluluklarıyla buluştuğum, yazılım teknolojilerindeki son trendleri yakaladığım an.</p>
+      </div></div>
+
+      <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">18 Kasım 2025</span>
+        <h4 data-tr="Batman Genç MÜSİAD" data-en="Batman Young MÜSİAD">Batman Genç MÜSİAD</h4>
+        <p data-tr="İş dünyası ve girişimcilik vizyonu üzerine attığım güçlü bir ağ kurma adımı." data-en="A strong networking step I took on business world and entrepreneurship vision.">İş dünyası ve girişimcilik vizyonu üzerine attığım güçlü bir ağ kurma adımı.</p>
+      </div></div>
+
+      <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">21 Aralık 2025</span>
+        <h4 data-tr="Diyarbakır Küre Çalıştayı" data-en="Diyarbakır Globe Workshop">Diyarbakır Küre Çalıştayı</h4>
+        <p data-tr="Bölgesel vizyon geliştirme ve stratejik planlama üzerine gerçekleştirdiğimiz önemli çalıştay." data-en="An important workshop on regional vision development and strategic planning.">Bölgesel vizyon geliştirme ve stratejik planlama üzerine gerçekleştirdiğimiz önemli çalıştay.</p>
+      </div></div>
+
+      <div class="timeline-item fade-in"><div class="timeline-content"><span class="timeline-date">13 - 15 Şubat 2026</span>
+        <h4 data-tr="Elazığ YZ Eğitmen Eğitimi" data-en="Elazığ AI Trainer Training">Elazığ YZ Eğitmen Eğitimi</h4>
+        <p data-tr="Yapay Zeka elçisi olma yolunda, dijital geleceği inşa etmek için aldığım kritik eğitim." data-en="A critical training I received on the path to becoming an AI ambassador, to build the digital future.">Yapay Zeka elçisi olma yolunda, dijital geleceği inşa etmek için aldığım kritik eğitim.</p>
+      </div></div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERTİFİKALAR -->
+<section id="sertifikalar" class="alt-bg">
+  <div class="container">
+    <h3 data-tr="Sertifikalar & <span>Başarılar</span>" data-en="Certificates & <span>Achievements</span>">Sertifikalar & <span>Başarılar</span></h3>
+    <div class="grid-container">
+      <div class="card fade-in"><div class="cert-icon">🛡️</div><h4 data-tr="SSB Kariyer Buluşmaları-2" data-en="SSB Career Meetings-2">SSB Kariyer Buluşmaları-2</h4><p data-tr="Savunma Sanayii Başkanlığı vizyoner kariyer buluşmaları katılım belgesi." data-en="Participation certificate for the Presidency of Defense Industries visionary career meetings.">Savunma Sanayii Başkanlığı vizyoner kariyer buluşmaları katılım belgesi.</p><a href="#" class="cert-btn" data-tr="Belgeyi Gör" data-en="View Certificate">Belgeyi Gör</a></div>
+      <div class="card fade-in"><div class="cert-icon">☁️</div><h4 data-tr="Google Cloud Üretken YZ" data-en="Google Cloud Generative AI">Google Cloud Üretken YZ</h4><p data-tr="Google Cloud platformu Üretken Yapay Zeka temelleri giriş eğitimi." data-en="Google Cloud platform Generative AI fundamentals introductory training.">Google Cloud platformu Üretken Yapay Zeka temelleri giriş eğitimi.</p><a href="#" class="cert-btn" data-tr="Belgeyi Gör" data-en="View Certificate">Belgeyi Gör</a></div>
+      <div class="card fade-in"><div class="cert-icon">🚁</div><h4 data-tr="T3 Akademi İHA Eğitimi" data-en="T3 Academy UAV Training">T3 Akademi İHA Eğitimi</h4><p data-tr="T3 Akademi başarıyla tamamlanan İnsansız Hava Araçları (İHA) eğitim belgesi." data-en="Successfully completed Unmanned Aerial Vehicles (UAV) training certificate from T3 Academy.">T3 Akademi başarıyla tamamlanan İnsansız Hava Araçları (İHA) eğitim belgesi.</p><a href="#" class="cert-btn" data-tr="Belgeyi Gör" data-en="View Certificate">Belgeyi Gör</a></div>
+      <div class="card fade-in"><div class="cert-icon">🧠</div><h4 data-tr="Habitat Derneği YZ Eğitimi" data-en="Habitat Association AI Training">Habitat Derneği YZ Eğitimi</h4><p data-tr='Habitat Derneği "Yapay Zeka Yıldızları" projesi kapsamında yapay zeka eğitim sertifikası.' data-en='AI training certificate under the Habitat Association "AI Stars" project.'>Habitat Derneği "Yapay Zeka Yıldızları" projesi kapsamında yapay zeka eğitim sertifikası.</p><a href="#" class="cert-btn" data-tr="Belgeyi Gör" data-en="View Certificate">Belgeyi Gör</a></div>
+      <div class="card fade-in"><div class="cert-icon">🚀</div><h4 data-tr="TEKNOFEST İstanbul Teşekkürü" data-en="TEKNOFEST Istanbul Appreciation">TEKNOFEST İstanbul Teşekkürü</h4><p data-tr="TEKNOFEST İstanbul organizasyonundaki aktif görevler için teşekkür belgesi." data-en="Certificate of appreciation for active roles in the TEKNOFEST Istanbul organization.">TEKNOFEST İstanbul organizasyonundaki aktif görevler için teşekkür belgesi.</p><a href="#" class="cert-btn" data-tr="Belgeyi Gör" data-en="View Certificate">Belgeyi Gör</a></div>
+      <div class="card fade-in"><div class="cert-icon">🚀</div><h4 data-tr="TEKNOFEST Adana Teşekkürü" data-en="TEKNOFEST Adana Appreciation">TEKNOFEST Adana Teşekkürü</h4><p data-tr="TEKNOFEST Adana'da gösterilen üstün gönüllülük ve saha koordinasyonu teşekkürü." data-en="Appreciation for outstanding volunteering and field coordination at TEKNOFEST Adana.">TEKNOFEST Adana'da gösterilen üstün gönüllülük ve saha koordinasyonu teşekkürü.</p><a href="#" class="cert-btn" data-tr="Belgeyi Gör" data-en="View Certificate">Belgeyi Gör</a></div>
+      <div class="card fade-in"><div class="cert-icon">🌍</div><h4 data-tr="UNICEF PSEA Eğitim Belgesi" data-en="UNICEF PSEA Training Certificate">UNICEF PSEA Eğitim Belgesi</h4><p data-tr="İnsani yardım standartları ve uluslararası etik kuralları içeren PSEA eğitim sertifikası." data-en="PSEA training certificate covering humanitarian standards and international ethical rules.">İnsani yardım standartları ve uluslararası etik kuralları içeren PSEA eğitim sertifikası.</p><a href="#" class="cert-btn" data-tr="Belgeyi Gör" data-en="View Certificate">Belgeyi Gör</a></div>
+      <div class="card fade-in"><div class="cert-icon">💚</div><h4 data-tr="Yeşilay Aktif Gönüllüsü" data-en="Yeşilay Active Volunteer">Yeşilay Aktif Gönüllüsü</h4><p data-tr="Yeşilay bünyesinde bağımlılıkla mücadele odaklı aktif gönüllülük belgesi." data-en="Active volunteering certificate focused on fighting addiction within Yeşilay.">Yeşilay bünyesinde bağımlılıkla mücadele odaklı aktif gönüllülük belgesi.</p><a href="#" class="cert-btn" data-tr="Belgeyi Gör" data-en="View Certificate">Belgeyi Gör</a></div>
+      <div class="card fade-in"><div class="cert-icon">🤝</div><h4 data-tr="İhtiyaç Haritası Akran Eğitimi" data-en="Need Map Peer Training">İhtiyaç Haritası Akran Eğitimi</h4><p data-tr="Sosyal sorumluluk odaklı akrandan akrana eğitim katılım belgesi." data-en="Peer-to-peer training participation certificate focused on social responsibility.">Sosyal sorumluluk odaklı akrandan akrana eğitim katılım belgesi.</p><a href="#" class="cert-btn" data-tr="Belgeyi Gör" data-en="View Certificate">Belgeyi Gör</a></div>
+      <div class="card fade-in"><div class="cert-icon">💡</div><h4 data-tr="MardinUP Katılım Belgesi" data-en="MardinUP Participation Certificate">MardinUP Katılım Belgesi</h4><p data-tr="Bölgesel girişimcilik ve inovasyon ekosistemini destekleyen etkinlik katılım belgesi." data-en="Event participation certificate supporting the regional entrepreneurship and innovation ecosystem.">Bölgesel girişimcilik ve inovasyon ekosistemini destekleyen etkinlik katılım belgesi.</p><a href="#" class="cert-btn" data-tr="Belgeyi Gör" data-en="View Certificate">Belgeyi Gör</a></div>
+      <div class="card fade-in"><div class="cert-icon">💼</div><h4 data-tr="Genç MÜSİAD Katılım Belgesi" data-en="Young MÜSİAD Participation">Genç MÜSİAD Katılım Belgesi</h4><p data-tr="İş dünyası, ekonomi ve girişimcilik vizyonunu geliştirmek amacıyla etkinlik belgesi." data-en="Event certificate aimed at developing business world, economy, and entrepreneurship vision.">İş dünyası, ekonomi ve girişimcilik vizyonunu geliştirmek amacıyla etkinlik belgesi.</p><a href="#" class="cert-btn" data-tr="Belgeyi Gör" data-en="View Certificate">Belgeyi Gör</a></div>
+      <div class="card fade-in"><div class="cert-icon">🚗</div><h4 data-tr="OİB Otomotiv Yaz Kampı" data-en="OİB Automotive Summer Camp">OİB Otomotiv Yaz Kampı</h4><p data-tr="Uludağ Otomotiv Endüstrisi yenilikçi mobilite teknolojileri yaz kampı belgesi." data-en="Uludağ Automotive Industry innovative mobility technologies summer camp certificate.">Uludağ Otomotiv Endüstrisi yenilikçi mobilite teknolojileri yaz kampı belgesi.</p><a href="#" class="cert-btn" data-tr="Belgeyi Gör" data-en="View Certificate">Belgeyi Gör</a></div>
+      <div class="card fade-in"><div class="cert-icon">⛺</div><h4 data-tr="GSB Çalıştay Katılım Belgesi" data-en="GSB Workshop Certificate">GSB Çalıştay Katılım Belgesi</h4><p data-tr="Gençlik ve Spor Bakanlığı gençlik politikaları vizyon geliştirme çalıştayı belgesi." data-en="Ministry of Youth and Sports youth policies vision development workshop certificate.">Gençlik ve Spor Bakanlığı gençlik politikaları vizyon geliştirme çalıştayı belgesi.</p><a href="#" class="cert-btn" data-tr="Belgeyi Gör" data-en="View Certificate">Belgeyi Gör</a></div>
+      <div class="card fade-in"><div class="cert-icon">🌱</div><h4 data-tr="TEMA YZ Doğayı Koruma" data-en="TEMA AI Nature Conservation">TEMA YZ Doğayı Koruma</h4><p data-tr="Yapay zeka teknolojilerinin doğa koruma süreçlerine entegrasyonu eğitim belgesi." data-en="Training certificate on integrating AI technologies into nature conservation processes.">Yapay zeka teknolojilerinin doğa koruma süreçlerine entegrasyonu eğitim belgesi.</p><a href="#" class="cert-btn" data-tr="Belgeyi Gör" data-en="View Certificate">Belgeyi Gör</a></div>
+      <div class="card fade-in"><div class="cert-icon">📝</div><h4 data-tr="Turkcell Geleceği Yazanlar Word" data-en="Turkcell Future Writers Word">Turkcell Geleceği Yazanlar Word</h4><p data-tr="Dijital okuryazarlık ve ofis programları eğitim sertifikası." data-en="Digital literacy and office programs training certificate.">Dijital okuryazarlık ve ofis programları eğitim sertifikası.</p><a href="#" class="cert-btn" data-tr="Belgeyi Gör" data-en="View Certificate">Belgeyi Gör</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERİ -->
+<section id="galeri">
+  <div class="container">
+    <h3 data-tr="Sahadan <span>Kareler</span>" data-en="<span>Frames</span> from the Field">Sahadan <span>Kareler</span></h3>
+    <div class="gallery-grid">
+      <img src="saha1.jpg" alt="TEKNOFEST Saha Görevi" class="gallery-img fade-in" onerror="this.src='https://via.placeholder.com/500x300?text=Saha+1+Bekleniyor'">
+      <img src="saha2.jpg" alt="T3 Vakfı Eğitimleri" class="gallery-img fade-in" onerror="this.src='https://via.placeholder.com/500x300?text=Saha+2+Bekleniyor'">
+      <img src="saha3.jpg" alt="Yeşilay Etkinliği" class="gallery-img fade-in" onerror="this.src='https://via.placeholder.com/500x300?text=Saha+3+Bekleniyor'">
+      <img src="saha4.jpg" alt="Takım Çalışması ve Liderlik" class="gallery-img fade-in" onerror="this.src='https://via.placeholder.com/500x300?text=Saha+4+Bekleniyor'">
+    </div>
+  </div>
+</section>
+
+<!-- BÜLTEN -->
+<section id="bulten" class="alt-bg">
+  <div class="container">
+    <h3 data-tr="Teknoloji <span>Radarı</span>" data-en="Technology <span>Radar</span>">Teknoloji <span>Radarı</span></h3>
+    <div class="radar-grid">
+      <div class="radar-box fade-in">
+        <h4>📚 <span data-tr="Okuma & Takip Listem" data-en="Reading & Follow List">Okuma & Takip Listem</span></h4>
+        <ul class="radar-list">
+          <li><strong data-tr="Kitap:" data-en="Book:">Kitap:</strong> <span data-tr="Yapay Zeka Devrimi (Örnek Kitap)" data-en="The AI Revolution (Sample Book)">Yapay Zeka Devrimi (Örnek Kitap)</span></li>
+          <li><strong data-tr="Araştırma:" data-en="Research:">Araştırma:</strong> <span data-tr="Otonom İHA Sistemleri Mimarisi" data-en="Autonomous UAV Systems Architecture">Otonom İHA Sistemleri Mimarisi</span></li>
+          <li><strong data-tr="Podcast:" data-en="Podcast:">Podcast:</strong> Geleceği Yazanlar / TechTalks</li>
+          <li><strong data-tr="Odak:" data-en="Focus:">Odak:</strong> <span data-tr="Python ve Makine Öğrenmesi Pratikleri" data-en="Python and Machine Learning Practices">Python ve Makine Öğrenmesi Pratikleri</span></li>
+        </ul>
+      </div>
+      <div class="radar-box fade-in">
+        <h4>📡 <span data-tr="Haftalık Pazartesi Bülteni" data-en="Weekly Monday Bulletin">Haftalık Pazartesi Bülteni</span></h4>
+        <span class="bulletin-date" data-tr="Güncelleme: 23 Şubat 2026 Pazartesi" data-en="Updated: February 23, 2026 Monday">Güncelleme: 23 Şubat 2026 Pazartesi</span>
+        <p style="color:#ddd;font-size:0.95rem;line-height:1.6;"
+           data-tr="Bu hafta radarımda neler var? <strong>TeknoAI-T</strong> ekibiyle yapay zeka modelleri üzerine yoğunlaşıyoruz. Ayrıca Savunma Sanayii projelerindeki yeni insansız sistemler duyurularını inceledim. Hedeflerime emin adımlarla yürümeye ve TYT/AYT denemelerinde netlerimi artırmaya devam ediyorum!"
+           data-en="What's on my radar this week? We're focusing on AI models with the <strong>TeknoAI-T</strong> team. I also reviewed new unmanned systems announcements in Defense Industry projects. I continue to march confidently toward my goals and improve my university exam scores!">Bu hafta radarımda neler var? <strong>TeknoAI-T</strong> ekibiyle yapay zeka modelleri üzerine yoğunlaşıyoruz. Ayrıca Savunma Sanayii projelerindeki yeni insansız sistemler duyurularını inceledim. Hedeflerime emin adımlarla yürümeye ve TYT/AYT denemelerinde netlerimi artırmaya devam ediyorum!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- İLETİŞİM -->
+<section id="iletisim">
+  <div class="container">
+    <h3 data-tr="Sistem <span>Erişimi</span> (İletişim)" data-en="System <span>Access</span> (Contact)">Sistem <span>Erişimi</span> (İletişim)</h3>
+    <form class="contact-form fade-in" action="#" method="POST">
+      <div class="form-group">
+        <label>>_ <span data-tr="GÖNDERİCİ (Adınız Soyadınız):" data-en="SENDER (Full Name):">GÖNDERİCİ (Adınız Soyadınız):</span></label>
+        <input type="text" id="name-input" placeholder="İsim Giriniz..." required>
+      </div>
+      <div class="form-group">
+        <label>>_ <span data-tr="E-POSTA (İletişim Adresi):" data-en="E-MAIL (Contact Address):">E-POSTA (İletişim Adresi):</span></label>
+        <input type="email" id="email-input" placeholder="ornek@domain.com" required>
+      </div>
+      <div class="form-group">
+        <label>>_ <span data-tr="VERİ PAKETİ (Mesajınız):" data-en="DATA PACKET (Your Message):">VERİ PAKETİ (Mesajınız):</span></label>
+        <textarea rows="5" id="msg-input" placeholder="İş birliği, proje teklifi veya tanışma mesajınızı yazın..." required></textarea>
+      </div>
+      <button type="submit" class="submit-btn" data-tr="[ KOMUTU ÇALIŞTIR VE GÖNDER ]" data-en="[ EXECUTE COMMAND AND SEND ]">[ KOMUTU ÇALIŞTIR VE GÖNDER ]</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 <span data-tr="Tüm Hakları Saklıdır." data-en="All Rights Reserved.">Tüm Hakları Saklıdır.</span> | Muhammed Sevinç - <span data-tr="Geleceğin Bilgisayar Mühendisi" data-en="Future Computer Engineer">Geleceğin Bilgisayar Mühendisi</span></p>
+</footer>
+
+<script>
+// ── DİL SİSTEMİ ──
+const trWords = ["Geleceğin Bilgisayar Mühendisi...", "Yapay Zeka (TeknoAI-T) Geliştiricisi...", "Milli Teknoloji Hamlesi Gönüllüsü...", "Savunma Sanayii Tutkunu..."];
+const enWords = ["Future Computer Engineer...", "AI (TeknoAI-T) Developer...", "National Technology Initiative Volunteer...", "Defense Industry Enthusiast..."];
+let currentLang = 'tr';
+let typingWords = trWords;
+
+function setLang(lang) {
+  currentLang = lang;
+  typingWords = lang === 'tr' ? trWords : enWords;
+
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector('.lang-btn[onclick="setLang(\'' + lang + '\')"]').classList.add('active');
+
+  document.querySelectorAll('[data-tr]').forEach(el => {
+    const val = el.getAttribute('data-' + lang);
+    if (val !== null) el.innerHTML = val;
+  });
+
+  clearTimeout(timer);
+  wordIndex = 0;
+  document.getElementById('typewriter').innerHTML = '';
+  typingEffect();
+
+  document.getElementById('name-input').placeholder  = lang === 'tr' ? 'İsim Giriniz...' : 'Enter your name...';
+  document.getElementById('email-input').placeholder = lang === 'tr' ? 'ornek@domain.com' : 'example@domain.com';
+  document.getElementById('msg-input').placeholder   = lang === 'tr' ? 'İş birliği, proje teklifi veya tanışma mesajınızı yazın...' : 'Write your collaboration, project proposal, or introduction message...';
+}
+
+// ── DAKTİLO EFEKTİ ──
+let wordIndex = 0, timer;
+function typingEffect() {
+  let word = typingWords[wordIndex].split("");
+  var loopTyping = function() {
+    if (word.length > 0) { document.getElementById('typewriter').innerHTML += word.shift(); }
+    else { setTimeout(deletingEffect, 2000); return false; }
+    timer = setTimeout(loopTyping, 100);
+  };
+  loopTyping();
+}
+function deletingEffect() {
+  let word = typingWords[wordIndex].split("");
+  var loopDeleting = function() {
+    if (word.length > 0) { word.pop(); document.getElementById('typewriter').innerHTML = word.join(""); }
+    else { wordIndex = (typingWords.length > (wordIndex + 1)) ? wordIndex + 1 : 0; typingEffect(); return false; }
+    timer = setTimeout(loopDeleting, 50);
+  };
+  loopDeleting();
+}
+typingEffect();
+
+// ── SCROLL ANİMASYONLARI ──
+const observerOptions = { root:null, rootMargin:'0px', threshold:0.1 };
+const observer = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('visible'); obs.unobserve(entry.target); }
+  });
+}, observerOptions);
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ── SAYAÇ ANİMASYONU ──
+const counters = document.querySelectorAll('.stat-number');
+const counterObserver = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const counter = entry.target;
+      const updateCount = () => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText.replace('+','');
+        const inc = target / 40;
+        if (count < target) { counter.innerText = Math.ceil(count + inc); setTimeout(updateCount, 40); }
+        else { counter.innerText = target + "+"; }
+      };
+      updateCount();
+      obs.unobserve(counter);
+    }
+  });
+}, { threshold:0.5 });
+counters.forEach(counter => counterObserver.observe(counter));
+</script>
+</body>
 </html>
 
